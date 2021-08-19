@@ -1,26 +1,60 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense } from "react";
+import { BrowserRouter, Switch, Route, useLocation } from "react-router-dom";
+import { Provider as StateProvider } from "react-redux";
+import {
+  ThemeProvider as MuiThemeProvider,
+  CssBaseline,
+} from "@material-ui/core";
 
-function App() {
+import { useIsDarkMode } from "state/user/hooks";
+import { darkTheme, lightTheme } from "./theme";
+import store from "./state";
+
+import { LoginPage } from "./pages";
+
+const StateUpdaters: React.FC = () => {
+  return <></>;
+};
+
+const ThemeProvider: React.FC = ({ children }) => {
+  const location = useLocation();
+  const darkMode = useIsDarkMode();
+  let theme = darkMode ? darkTheme : lightTheme;
+
+  if (location.pathname.replace("/", "") === "") {
+    theme = darkTheme;
+  }
+
+  return <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>;
+};
+
+const Providers: React.FC = ({ children }) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Suspense fallback={null}>
+        <StateProvider store={store}>
+          <StateUpdaters />
+
+          <ThemeProvider>
+            <CssBaseline />
+            {children}
+          </ThemeProvider>
+        </StateProvider>
+      </Suspense>
+    </BrowserRouter>
   );
-}
+};
+
+const App: React.FC = () => {
+  return (
+    <Providers>
+      <Switch>
+        <Route exact path="/">
+          <LoginPage />
+        </Route>
+      </Switch>
+    </Providers>
+  );
+};
 
 export default App;
