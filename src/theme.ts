@@ -6,16 +6,19 @@ import {
 import { merge } from "lodash";
 
 // colors
-const primary = "#5294FF";
+const primary = "#3772FF";
 const emmeBlueDay = "rgba(82, 148, 255, 0.12)";
 const emmeBlueNight = "rgba(82, 148, 255, 0.2)";
 
 const greySecondaryDay = "#8D97A0";
-const greySecondaryNight = "#646464";
+const greySecondaryNight = "#FCFCFD";
 const searchBarGrey = "#181818";
 
-const black = "#000000";
+const black = "#1D1D20";
 const white = "#ffffff";
+
+const success = "#58BD7D";
+const warning = "#FF6838";
 
 const whiteColor = "#F7FAFF";
 
@@ -24,17 +27,8 @@ const textSecondaryDay = "#8D97A0";
 const textPrimaryNight = "#DCDCDC";
 const textSecondaryNight = "#646464";
 
-const callGradientA = "#5294FF";
-const callGradientB = "#1EFF78";
-
-const putGradientA = "#EB4A97";
-const putGradientB = "#8C43F6";
-
-const hotBadgeGradientA = "#EB7A4A";
-const hotBadgeGradientB = "#F643CF";
-
 const backgroundDay = "#F2F4F5";
-const backgroundNight = "#000000";
+const backgroundNight = "#1D1D20";
 
 const dividerGreyDay = "#E9E9E9";
 const dividerGreyNight = "#212121";
@@ -77,8 +71,8 @@ export const lightTheme = responsiveFontSizes(
         white,
       },
       warning: {
-        main: hotBadgeGradientA,
-        dark: hotBadgeGradientB,
+        main: warning,
+        dark: warning,
       },
       text: {
         primary: textPrimaryDay,
@@ -90,12 +84,12 @@ export const lightTheme = responsiveFontSizes(
         paper: white,
       },
       success: {
-        main: callGradientA,
-        dark: callGradientB,
+        main: success,
+        dark: success,
       },
       error: {
-        main: putGradientA,
-        dark: putGradientB,
+        main: warning,
+        dark: warning,
       },
       divider: dividerGreyDay,
     },
@@ -187,30 +181,30 @@ export const lightTheme = responsiveFontSizes(
           color: greySecondaryDay,
         },
         containedPrimary: {
-          background: `linear-gradient(121.21deg, ${callGradientA} 7.78%, ${callGradientB} 118.78%);`,
+          background: primary,
           color: white,
+
           "&:hover": {
-            background: `linear-gradient(121.21deg, ${callGradientB} 7.78%, ${callGradientA} 118.78%);`,
+            opacity: 0.9,
           },
+
           "&$disabled": {
             opacity: "0.3",
-            color: white,
           },
+
           "&:active": {
             backgroundColor: primary,
-            color: white,
             background: "none",
             opacity: "1",
           },
         },
         containedSecondary: {
-          background: `linear-gradient(316.57deg, ${putGradientA} 18.89%, ${putGradientB} 95.84%);`,
+          background: ``,
           color: white,
           "&:hover": {
-            background: `linear-gradient(316.57deg, ${putGradientB} 18.89%, ${putGradientA} 95.84%);`,
+            background: ``,
           },
           "&:active": {
-            backgroundColor: putGradientB,
             color: white,
             background: "none",
             opacity: "1",
@@ -536,13 +530,6 @@ export const lightTheme = responsiveFontSizes(
             color: "#646464",
           },
         },
-        active: {
-          background:
-            "-webkit-linear-gradient(121.21deg, #1EFF78 -11.78%, #5294FF 118.78%)",
-          "-webkit-background-clip": "text",
-          "-webkit-text-fill-color": "transparent",
-          width: "fit-content",
-        },
       },
     },
   })
@@ -565,8 +552,8 @@ export const darkTheme = responsiveFontSizes(
         white,
       },
       warning: {
-        main: hotBadgeGradientA,
-        dark: hotBadgeGradientB,
+        main: warning,
+        dark: warning,
       },
       text: {
         primary: textPrimaryNight,
@@ -578,12 +565,12 @@ export const darkTheme = responsiveFontSizes(
         paper: backgroundNight,
       },
       success: {
-        main: callGradientA,
-        dark: callGradientB,
+        main: primary,
+        dark: primary,
       },
       error: {
-        main: putGradientA,
-        dark: putGradientB,
+        main: warning,
+        dark: warning,
       },
       divider: dividerGreyNight,
       // Used to shift a color's luminance by approximately
@@ -871,11 +858,11 @@ export const darkTheme = responsiveFontSizes(
           backgroundColor: "transparent",
         },
         containedPrimary: {
-          background: `linear-gradient(121.21deg, ${callGradientA} 7.78%, ${callGradientB} 118.78%);`,
+          background: primary,
           color: black,
           boxShadow: "0px 0px 25px rgba(43, 229, 154, 0.25)",
           "&:hover": {
-            background: `linear-gradient(121.21deg, ${callGradientB} 7.78%, ${callGradientA} 118.78%);`,
+            background: "",
           },
           "&$disabled": {
             opacity: "0.3",
@@ -889,15 +876,14 @@ export const darkTheme = responsiveFontSizes(
           },
         },
         containedSecondary: {
-          background: `linear-gradient(316.57deg, ${putGradientA} 18.89%, ${putGradientB} 95.84%);`,
+          background: ``,
           color: black,
           fontWeight: 500,
           boxShadow: "0px 0px 5px rgba(246, 67, 207, 0.4)",
           "&:hover": {
-            background: `linear-gradient(316.57deg, ${putGradientB} 18.89%, ${putGradientA} 95.84%);`,
+            background: ``,
           },
           "&:active": {
-            backgroundColor: putGradientB,
             color: black,
             background: "none",
             opacity: "1",
@@ -1097,10 +1083,6 @@ export const darkTheme = responsiveFontSizes(
           },
         },
         active: {
-          background:
-            "-webkit-linear-gradient(121.21deg, #1EFF78 -11.78%, #5294FF 118.78%)",
-          "-webkit-background-clip": "text",
-          "-webkit-text-fill-color": "transparent",
           width: "fit-content",
         },
       },

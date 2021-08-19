@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { Grid, Button, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { FormInput } from "components";
+import { ReactComponent as LeftBackground } from "assets/svg/LeftBackground.svg";
 
 const validateSchema = Yup.object().shape({
   email: Yup.string()
@@ -23,6 +24,11 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     position: "relative",
     flexDirection: "column-reverse",
+
+    "& svg": {
+      height: "100vh",
+      width: "auto",
+    },
   },
   content: {
     position: "absolute",
@@ -53,6 +59,8 @@ const useStyles = makeStyles((theme) => ({
   form: {
     flex: 1,
     display: "flex",
+    background: theme.palette.background.paper,
+
     "& > div": {
       width: "100%",
       padding: theme.spacing(2),
@@ -82,7 +90,9 @@ function Login() {
         component="span"
         className={classes.paper}
         display={{ xs: "none", md: "flex" }}
-      ></Box>
+      >
+        <LeftBackground />
+      </Box>
       <Formik
         onSubmit={handleSubmit}
         initialValues={{ email: "", password: "" }}
