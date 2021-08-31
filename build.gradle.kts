@@ -14,7 +14,7 @@ allprojects {
 
 tasks.named("release").configure {
     dependsOn.removeIf {
-        it.toString().contains("npm_run_build")
+        it.toString().contains("yarn_run_build")
     }
 }
 

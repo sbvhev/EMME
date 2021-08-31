@@ -31,8 +31,8 @@ abstract class NodeBuild(
         val gradleTaskPrefix = projectConfig?.let { ":${it.directory}:" } ?: ""
         
         gradle {
-            this.name = "Gradle - Execute npm_run_build"
-            tasks = "$gradleBaseTask ${gradleTaskPrefix}npm_run_build"
+            this.name = "Gradle - Execute yarn_run_build"
+            tasks = "$gradleBaseTask ${gradleTaskPrefix}yarn_run_build"
             buildFile = "build.gradle.kts"
         }
         if (projectConfig != null) {
