@@ -5,7 +5,7 @@ import {
   InputLabel,
   FormControl,
 } from "@material-ui/core";
-import { withStyles, fade, makeStyles } from "@material-ui/core/styles";
+import { withStyles, alpha, makeStyles } from "@material-ui/core/styles";
 
 const FormInput = withStyles((theme) => ({
   root: {
@@ -20,6 +20,7 @@ const FormInput = withStyles((theme) => ({
     borderWidth: 1,
     borderStyle: "solid",
     fontSize: 14,
+    height: 48,
     padding: "10px 12px",
     transition: theme.transitions.create(["border-color", "box-shadow"]),
     width: "100%",
@@ -36,7 +37,7 @@ const FormInput = withStyles((theme) => ({
       '"Segoe UI Symbol"',
     ].join(","),
     "&:focus": {
-      boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
+      boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
       borderColor: theme.palette.primary.main,
     },
   },

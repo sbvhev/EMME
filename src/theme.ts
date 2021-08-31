@@ -24,14 +24,14 @@ const whiteColor = "#F7FAFF";
 
 const textPrimaryDay = "#29343E";
 const textSecondaryDay = "#8D97A0";
-const textPrimaryNight = "#DCDCDC";
-const textSecondaryNight = "#646464";
+const textPrimaryNight = "#FCFCFD";
+const textSecondaryNight = "#777E90";
 
 const backgroundDay = "#F2F4F5";
 const backgroundNight = "#1D1D20";
 
 const dividerGreyDay = "#E9E9E9";
-const dividerGreyNight = "#212121";
+const dividerGreyNight = "#353945";
 
 // breakpoints
 const xl = 1920;
@@ -115,6 +115,7 @@ export const lightTheme = responsiveFontSizes(
           fontWeight: 700,
           lineHeight: "18px",
           borderRadius: 12,
+          height: 48,
           textTransform: "none",
           padding: "6px 2.25rem",
           backgroundColor: primary,
@@ -613,6 +614,19 @@ export const darkTheme = responsiveFontSizes(
       },
       MuiInputBase: {
         root: {
+          background: "transparent",
+          borderRadius: 12,
+
+          "& > input": {
+            background: "transparent",
+            borderRadius: 12,
+            padding: "0 16px",
+            border: `2px solid ${dividerGreyNight}`,
+            fontWeight: 500,
+            fontSize: 14,
+            color: textSecondaryNight,
+          },
+
           "&.Mui-focused > input::placeholder": {
             color: "transparent",
           },
@@ -621,10 +635,17 @@ export const darkTheme = responsiveFontSizes(
       MuiInput: {
         underline: {
           "&::before": {
-            borderColor: dividerGreyNight,
+            display: "none",
+          },
+          "&.Mui-error::after": {
+            borderColor: warning,
+            height: 52,
+            borderRadius: 12,
+            border: `2px solid ${warning}`,
           },
         },
       },
+      MuiFormLabel: {},
       MuiIconButton: {
         root: {
           padding: 4,
@@ -790,11 +811,11 @@ export const darkTheme = responsiveFontSizes(
         root: {
           boxSizing: "border-box",
           fontWeight: 700,
-          borderRadius: 12,
           textTransform: "none",
           padding: "6px 2.25rem",
           backgroundColor: primary,
           color: white,
+          borderRadius: 90,
           margin: "2px",
         },
         label: {
@@ -813,7 +834,9 @@ export const darkTheme = responsiveFontSizes(
           lineHeight: "18px",
         },
         sizeLarge: {
-          height: "45px",
+          height: "48px",
+          fontSize: 16,
+          lineHeight: "16px",
         },
         text: {
           width: 90,
@@ -859,8 +882,7 @@ export const darkTheme = responsiveFontSizes(
         },
         containedPrimary: {
           background: primary,
-          color: black,
-          boxShadow: "0px 0px 25px rgba(43, 229, 154, 0.25)",
+          color: textPrimaryNight,
           "&:hover": {
             background: "",
           },

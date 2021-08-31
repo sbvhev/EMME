@@ -109,10 +109,10 @@ function Login() {
             <Form className={classes.form}>
               <Box component="div" m={1}>
                 <FormInput
-                  label="Email Address"
+                  label="EMAIL"
                   id="email"
                   name="email"
-                  placeholder="Type your email"
+                  placeholder="Email address"
                   value={email}
                   touched={emailTouched}
                   error={emailError}
@@ -120,10 +120,10 @@ function Login() {
                   handleChange={handleChange}
                 />
                 <FormInput
-                  label="Password"
+                  label="PASSWORD"
                   id="password"
                   name="password"
-                  placeholder="Type your password"
+                  placeholder="Password"
                   type="password"
                   value={password}
                   touched={passwordTouched}
@@ -137,6 +137,7 @@ function Login() {
                   fullWidth
                   className={classes.submit}
                   type="submit"
+                  size="large"
                 >
                   Login
                 </Button>
