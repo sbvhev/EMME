@@ -1,5 +1,7 @@
+import common.BranchNodeBuild
 import common.FinalReleaseNodeBuild
 import common.ReleaseCandidateNodeBuild
+import common.SnapshotNodeBuild
 import common.VbkInternalDocker
 import jetbrains.buildServer.configs.kotlin.v2019_2.*
 import jetbrains.buildServer.configs.kotlin.v2019_2.projectFeatures.githubConnection
@@ -33,10 +35,11 @@ object GlobalSettings {
 }
 
 project {
-    subProject(WebProject)
-
     buildType(ReleaseCandidateNodeBuild())
     buildType(FinalReleaseNodeBuild())
+
+    buildType(BranchNodeBuild(web))
+    buildType(SnapshotNodeBuild(web))
 
     params {
         text("gradle-params", "", allowEmpty = true)

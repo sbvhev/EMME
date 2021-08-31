@@ -3,7 +3,6 @@ package common
 import Settings.GlobalSettings.allProjectConfigs
 import jetbrains.buildServer.configs.kotlin.v2019_2.BuildType
 import jetbrains.buildServer.configs.kotlin.v2019_2.DslContext
-import jetbrains.buildServer.configs.kotlin.v2019_2.Project
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildFeatures.dockerSupport
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildFeatures.sshAgent
 import jetbrains.buildServer.configs.kotlin.v2019_2.buildSteps.gradle
@@ -61,7 +60,7 @@ abstract class NodeBuild(
 
     features {
         sshAgent {
-            teamcitySshKey = "emme-retail-gh"
+            teamcitySshKey = "emme-retail-web-gh"
         }
         dockerSupport {
             loginToRegistry = on {
@@ -118,12 +117,3 @@ class FinalReleaseNodeBuild : NodeBuild(
     specialTag = "latest",
     triggerOnPush = false
 )
-
-fun Project.configureNodeProject(config: ProjectConfig) {
-    id(config.displayName.replace(" ", "_"))
-    name = config.displayName
-
-    buildType(BranchNodeBuild(config))
-    buildType(SnapshotNodeBuild(config))
-}
-
