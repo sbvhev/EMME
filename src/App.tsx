@@ -7,7 +7,8 @@ import {
 } from "@material-ui/core";
 
 import { darkTheme } from "./theme";
-import store from "./state";
+// import store from "./state";
+import { store } from "./stores/store";
 
 import { LoginPage, SignupPage } from "./pages";
 

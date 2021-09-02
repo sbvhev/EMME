@@ -3,12 +3,14 @@ import { save, load } from "redux-localstorage-simple";
 
 import { updateVersion } from "./user/actions";
 import user from "./user/reducer";
+import auth from "./auth/reducer";
 
-const PERSISTED_KEYS: string[] = ["user"];
+const PERSISTED_KEYS: string[] = ["user", "auth"];
 
 const store = configureStore({
   reducer: {
     user,
+    auth,
   },
   middleware: [
     ...getDefaultMiddleware({

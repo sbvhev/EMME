@@ -58,3 +58,8 @@ a:-webkit-any-link:hover {
 		transform: translate(-50%, -50%);
 	}
 }
+
+.MuiAlert-message{
+  display: inline-flex;
+  align-items: center;
+}
