@@ -131,7 +131,7 @@ function SignUp() {
   console.log("authStore; ", authStore);
 
   const [isAccept, setIsAccept] = useState(false);
-  const [openNotification, setOpenNotification] = useState(true);
+  const [openNotification, setOpenNotification] = useState(false);
   const [notifyType, setNotifyType] = useState<Status>("success");
   const [notifyMessage, setNotifyMessage] = useState("");
 
@@ -267,7 +267,7 @@ function SignUp() {
                 />
                 <FormInput
                   label="CONFIRM PASSWORD"
-                  id="password"
+                  id="re-password"
                   name="confirmPassword"
                   placeholder="Password"
                   type="password"
