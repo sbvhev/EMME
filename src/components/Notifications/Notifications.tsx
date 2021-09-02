@@ -44,7 +44,7 @@ const Notifications: React.FC<Props> = ({ open, message, type, onClose }) => {
         horizontal: "right",
       }}
       open={open}
-      autoHideDuration={5000}
+      autoHideDuration={3000}
       onClose={onClose}
     >
       <Alert

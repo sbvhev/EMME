@@ -9,7 +9,7 @@ import { ReactComponent as LeftBackground } from "assets/svg/LeftBackground.svg"
 import { FormInput, Checkbox, Notifications } from "components";
 
 import { useAppDispatch, useAppSelector } from "stores/hooks";
-import { fetchCreateUser } from "stores/reducers/auth";
+import { fetchCreateUser, resetData } from "stores/reducers/auth";
 
 type Status = "success" | "warning" | "error";
 
@@ -151,12 +151,6 @@ function SignUp() {
   };
 
   useEffect(() => {
-    if (authStore.isRegister && authStore.user) {
-      setNotifyMessage("You’ve successfully logged into the system.");
-      setNotifyType("success");
-
-      setOpenNotification(true);
-    }
     if (authStore.errors && authStore.isRegister === false) {
       setNotifyMessage(
         authStore.errors.message ||
@@ -166,7 +160,18 @@ function SignUp() {
 
       setOpenNotification(true);
     }
-  }, [authStore]);
+  }, [authStore.errors, authStore.isRegister]);
+
+  useEffect(() => {
+    if (authStore.isRegister && authStore.user) {
+      setNotifyMessage("You’ve successfully logged into the system.");
+      setNotifyType("success");
+
+      setOpenNotification(true);
+
+      dispatch(resetData());
+    }
+  }, [authStore.isRegister, authStore.user, dispatch]);
 
   return (
     <Grid container spacing={0} className={classes.container}>
