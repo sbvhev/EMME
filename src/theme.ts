@@ -75,8 +75,8 @@ export const darkTheme = responsiveFontSizes(
         paper: backgroundNight,
       },
       success: {
-        main: primary,
-        dark: primary,
+        main: success,
+        dark: success,
       },
       error: {
         main: warning,
