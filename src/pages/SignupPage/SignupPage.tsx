@@ -10,10 +10,15 @@ const validateSchema = Yup.object().shape({
   email: Yup.string()
     .email("It should be valid email address!")
     .required("Required"),
+  firstName: Yup.string().required("Required"),
+  lastName: Yup.string().required("Required"),
   password: Yup.string()
     .min(8, "Length must be at least 8 letters!")
     .max(50, "Length must be less than 50 letters!")
     .required("Required"),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("password"), null], "Passwords must match")
+    .required("Confirm Password is required"),
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -95,14 +100,32 @@ function SignUp() {
       </Box>
       <Formik
         onSubmit={handleSubmit}
-        initialValues={{ email: "", password: "" }}
+        initialValues={{
+          email: "",
+          password: "",
+          confirmPassword: "",
+          firstName: "",
+          lastName: "",
+        }}
         validationSchema={validateSchema}
       >
         {({
           handleChange,
-          values: { email, password },
-          touched: { email: emailTouched, password: passwordTouched },
-          errors: { email: emailError, password: passwordError },
+          values: { email, password, confirmPassword, firstName, lastName },
+          touched: {
+            email: emailTouched,
+            password: passwordTouched,
+            confirmPassword: confirmPasswordTouched,
+            firstName: firstNameTouched,
+            lastName: lastNameTouched,
+          },
+          errors: {
+            email: emailError,
+            password: passwordError,
+            confirmPassword: confirmPasswordError,
+            firstName: firstNameError,
+            lastName: lastNameError,
+          },
           handleBlur,
         }) => {
           return (
@@ -120,6 +143,28 @@ function SignUp() {
                   handleChange={handleChange}
                 />
                 <FormInput
+                  label="FIRST NAME"
+                  id="firstName"
+                  name="firstName"
+                  placeholder="First Name"
+                  value={firstName}
+                  touched={firstNameTouched}
+                  error={firstNameError}
+                  handleBlur={handleBlur}
+                  handleChange={handleChange}
+                />
+                <FormInput
+                  label="Last NAME"
+                  id="lastName"
+                  name="lastName"
+                  placeholder="Last Name"
+                  value={lastName}
+                  touched={lastNameTouched}
+                  error={lastNameError}
+                  handleBlur={handleBlur}
+                  handleChange={handleChange}
+                />
+                <FormInput
                   label="PASSWORD"
                   id="password"
                   name="password"
@@ -128,6 +173,18 @@ function SignUp() {
                   value={password}
                   touched={passwordTouched}
                   error={passwordError}
+                  handleBlur={handleBlur}
+                  handleChange={handleChange}
+                />
+                <FormInput
+                  label="CONFIRM PASSWORD"
+                  id="password"
+                  name="confirmPassword"
+                  placeholder="Password"
+                  type="password"
+                  value={confirmPassword}
+                  touched={confirmPasswordTouched}
+                  error={confirmPasswordError}
                   handleBlur={handleBlur}
                   handleChange={handleChange}
                 />

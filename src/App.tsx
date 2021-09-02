@@ -6,11 +6,10 @@ import {
   CssBaseline,
 } from "@material-ui/core";
 
-import { useIsDarkMode } from "state/user/hooks";
-import { darkTheme, lightTheme } from "./theme";
+import { darkTheme } from "./theme";
 import store from "./state";
 
-import { LoginPage } from "./pages";
+import { LoginPage, SignupPage } from "./pages";
 
 const StateUpdaters: React.FC = () => {
   return <></>;
@@ -18,8 +17,7 @@ const StateUpdaters: React.FC = () => {
 
 const ThemeProvider: React.FC = ({ children }) => {
   const location = useLocation();
-  const darkMode = useIsDarkMode();
-  let theme = darkMode ? darkTheme : lightTheme;
+  let theme = darkTheme;
 
   if (location.pathname.replace("/", "") === "") {
     theme = darkTheme;
@@ -51,6 +49,9 @@ const App: React.FC = () => {
       <Switch>
         <Route exact path="/">
           <LoginPage />
+        </Route>
+        <Route exact path="/signup">
+          <SignupPage />
         </Route>
       </Switch>
     </Providers>

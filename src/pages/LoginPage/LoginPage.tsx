@@ -116,6 +116,7 @@ function Login() {
                   value={email}
                   touched={emailTouched}
                   error={emailError}
+                  type="email"
                   handleBlur={handleBlur}
                   handleChange={handleChange}
                 />

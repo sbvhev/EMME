@@ -616,15 +616,21 @@ export const darkTheme = responsiveFontSizes(
         root: {
           background: "transparent",
           borderRadius: 12,
+          padding: "0 16px",
+          border: `2px solid ${dividerGreyNight}`,
+          fontWeight: 500,
+          fontSize: 14,
+          color: textSecondaryNight,
 
           "& > input": {
             background: "transparent",
-            borderRadius: 12,
-            padding: "0 16px",
-            border: `2px solid ${dividerGreyNight}`,
-            fontWeight: 500,
-            fontSize: 14,
-            color: textSecondaryNight,
+            padding: "0 16px 0 0",
+            outline: "none",
+            border: "none",
+
+            "&:focus": {
+              boxShadow: "none",
+            },
           },
 
           "&.Mui-focused > input::placeholder": {
@@ -642,6 +648,9 @@ export const darkTheme = responsiveFontSizes(
             height: 52,
             borderRadius: 12,
             border: `2px solid ${warning}`,
+            width: "calc(100% + 4px)",
+            left: -2,
+            bottom: -2,
           },
         },
       },

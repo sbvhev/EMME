@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Input,
   FormHelperText,
   InputLabel,
   FormControl,
+  InputAdornment,
+  IconButton,
 } from "@material-ui/core";
 import { withStyles, alpha, makeStyles } from "@material-ui/core/styles";
+import { Visibility, VisibilityOff } from "@material-ui/icons";
 
 const FormInput = withStyles((theme) => ({
   root: {
@@ -57,6 +60,8 @@ const useStyles = makeStyles((theme) => ({
   form: {
     flex: 1,
     display: "flex",
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
   },
 }));
 
@@ -73,6 +78,10 @@ export interface FormInputControlProps {
   type?: string;
 }
 
+interface State {
+  showPassword: boolean;
+}
+
 const FormInputControl: React.FC<FormInputControlProps> = (props) => {
   const classes = useStyles();
   const {
@@ -87,6 +96,19 @@ const FormInputControl: React.FC<FormInputControlProps> = (props) => {
     placeholder,
     type,
   } = props;
+  const [values, setValues] = useState<State>({
+    showPassword: type === "password" ? false : true,
+  });
+
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
+
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+  };
 
   return (
     <FormControl
@@ -101,13 +123,32 @@ const FormInputControl: React.FC<FormInputControlProps> = (props) => {
       <FormInput
         id={id}
         name={name}
-        type={type}
+        type={values.showPassword ? "text" : "password"}
         placeholder={placeholder}
         value={value}
         disableUnderline={!touched || !Boolean(error)}
         error={touched && Boolean(error)}
         onBlur={handleBlur}
         onChange={handleChange}
+        endAdornment={
+          type !== "password" ? (
+            <></>
+          ) : (
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+              >
+                {values.showPassword ? (
+                  <Visibility style={{ fill: "#777E90" }} />
+                ) : (
+                  <VisibilityOff style={{ fill: "#777E90" }} />
+                )}
+              </IconButton>
+            </InputAdornment>
+          )
+        }
       />
       <FormHelperText className={classes.helperText}>
         {touched && error}
