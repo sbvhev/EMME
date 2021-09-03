@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-// import { useDispatch, useSelector } from 'react-redux'
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Grid, Button, Box } from "@material-ui/core";
@@ -154,7 +153,7 @@ function SignUp() {
     if (authStore.errors && authStore.isRegister === false) {
       setNotifyMessage(
         authStore.errors.message ||
-          "The username or password you entered is incorrect."
+          "Error"
       );
       setNotifyType("warning");
 
@@ -164,7 +163,7 @@ function SignUp() {
 
   useEffect(() => {
     if (authStore.isRegister && authStore.user) {
-      setNotifyMessage("You’ve successfully logged into the system.");
+      setNotifyMessage("You have successfully created an account.");
       setNotifyType("success");
 
       setOpenNotification(true);
