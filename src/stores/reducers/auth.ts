@@ -17,8 +17,42 @@ export const fetchCreateUser = createAsyncThunk(
   }
 );
 
+type AddUser = {
+  email: string;
+  password: string;
+};
+export const fetchLoginUser = createAsyncThunk(
+  "auth/login",
+  async (options: AddUser, { rejectWithValue }) => {
+    try {
+      const username = options.email;
+      const password = options.password;
+
+      const token = Buffer.from(`${username}:${password}`, "utf8").toString(
+        "base64"
+      );
+      const response = await axios.post(
+        `${API_URL}users/login`,
+        {},
+        {
+          headers: {
+            Authorization: `Basic ${token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error: any) {
+      console.log("response: ", error.response.data);
+      return rejectWithValue(
+        error.response.data || { message: "Username or password incorrect." }
+      );
+    }
+  }
+);
+
 interface Props {
   isRegister: boolean;
+  isLogin: boolean;
   loading: boolean;
   user: any;
   errors: any;
@@ -26,6 +60,7 @@ interface Props {
 
 const initialState: Props = {
   isRegister: false,
+  isLogin: false,
   loading: false,
   user: null,
   errors: null,
@@ -38,10 +73,12 @@ const authSlice = createSlice({
     resetData: (state) => {
       state.errors = null;
       state.isRegister = false;
+      state.isLogin = false;
       state.user = null;
-    }
+    },
   },
   extraReducers: (builder) => {
+    // register
     builder.addCase(fetchCreateUser.pending, (state) => {
       state.loading = true;
     });
@@ -55,9 +92,24 @@ const authSlice = createSlice({
       state.loading = false;
       state.isRegister = false;
     });
+    // login
+    builder.addCase(fetchLoginUser.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(fetchLoginUser.fulfilled, (state, action) => {
+      state.loading = false;
+      state.isLogin = true;
+      state.user = action.payload;
+    });
+    builder.addCase(fetchLoginUser.rejected, (state, action) => {
+      state.loading = false;
+      state.isLogin = false;
+      state.user = null;
+      state.errors = action.payload;
+    });
   },
 });
 
-export const { resetData } = authSlice.actions; 
+export const { resetData } = authSlice.actions;
 export const authSelector = (state: RootState) => state.auth;
 export default authSlice.reducer;

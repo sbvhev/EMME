@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Grid, Button, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { FormInput } from "components";
 import { ReactComponent as LeftBackground } from "assets/svg/LeftBackground.svg";
+import { FormInput, Notifications } from "components";
+
+import { useAppDispatch, useAppSelector } from "stores/hooks";
+import { fetchLoginUser, resetData } from "stores/reducers/auth";
 
 const validateSchema = Yup.object().shape({
   email: Yup.string()
@@ -75,13 +79,78 @@ const useStyles = makeStyles((theme) => ({
   helperText: {
     minHeight: 16,
   },
+  textMessage: {
+    fontSize: "14px",
+    lineHeight: "23px",
+  },
+  formTitle: {
+    fontSize: "40px",
+    lineHeight: "48px",
+    textAlign: "center",
+    letterSpacing: "-0.01em",
+    marginBottom: "32px",
+    paddingBottom: "32px",
+    borderBottom: "1px solid #353945",
+  },
+  otherText: {
+    fontSize: "14px",
+    lineHeight: "16px",
+    color: "#FCFCFD",
+    textAlign: "center",
+    fontWeight: "bold",
+    textDecoration: "none",
+    marginTop: "32px",
+
+    "& a": {
+      color: "#3772FF",
+      marginLeft: "8px",
+      textDecoration: "none",
+    },
+  },
 }));
+
+type Status = "success" | "warning" | "error";
 
 function Login() {
   const classes = useStyles();
+  const dispatch = useAppDispatch();
+  const { isLogin, user, errors, loading } = useAppSelector(
+    (state) => state.auth
+  );
+
+  const [openNotification, setOpenNotification] = useState(false);
+  const [notifyType, setNotifyType] = useState<Status>("success");
+  const [notifyMessage, setNotifyMessage] = useState("");
+
+  useEffect(() => {
+    if (errors && isLogin === false) {
+      setNotifyMessage(
+        errors.message || "The username or password you entered is incorrect."
+      );
+      setNotifyType("warning");
+
+      setOpenNotification(true);
+    }
+  }, [errors, isLogin]);
+
+  useEffect(() => {
+    if (isLogin && user) {
+      setNotifyMessage("You’ve successfully logged into the system.");
+      setNotifyType("success");
+
+      setOpenNotification(true);
+
+      dispatch(resetData());
+    }
+  }, [isLogin, user, dispatch]);
 
   const handleSubmit = (values: any, actions: any) => {
     console.log("----here----", values);
+    dispatch(fetchLoginUser(values));
+  };
+
+  const handleToggleNotification = () => {
+    setOpenNotification(!openNotification);
   };
 
   return (
@@ -108,6 +177,17 @@ function Login() {
           return (
             <Form className={classes.form}>
               <Box component="div" m={1}>
+                <Notifications
+                  message={
+                    <span className={classes.textMessage}>{notifyMessage}</span>
+                  }
+                  open={openNotification}
+                  onClose={handleToggleNotification}
+                  type={notifyType}
+                />
+
+                <h2 className={classes.formTitle}>Sign in to EM.ME</h2>
+
                 <FormInput
                   label="EMAIL"
                   id="email"
@@ -142,6 +222,10 @@ function Login() {
                 >
                   Login
                 </Button>
+                <p className={classes.otherText}>
+                  Don’t have an account?
+                  <Link to="/signup">Sign up for free</Link>
+                </p>
               </Box>
             </Form>
           );
