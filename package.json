@@ -20,6 +20,7 @@
     "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "clsx": "^1.1.1",
+    "country-state-city": "^3.0.1",
     "eslint-import-resolver-typescript": "^2.3.0",
     "formik": "^2.2.9",
     "hamburger-react": "^2.4.1",

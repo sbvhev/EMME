@@ -97,6 +97,9 @@ const authSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(fetchLoginUser.fulfilled, (state, action) => {
+      localStorage.setItem('emme_token', action.payload.token);
+      localStorage.setItem('emme_email', action.payload.email);
+      localStorage.setItem('emme_id', action.payload.id);
       state.loading = false;
       state.isLogin = true;
       state.user = action.payload;
