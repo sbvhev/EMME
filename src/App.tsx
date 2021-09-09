@@ -9,7 +9,7 @@ import {
 import { darkTheme } from "./theme";
 import { store } from "./stores/store";
 
-import { LoginPage, SignupPage } from "./pages";
+import { LoginPage, SignupPage, HomePage, ProfilePage } from "./pages";
 
 const StateUpdaters: React.FC = () => {
   return <></>;
@@ -47,12 +47,10 @@ const App: React.FC = () => {
   return (
     <Providers>
       <Switch>
-        <Route exact path="/">
-          <LoginPage />
-        </Route>
-        <Route exact path="/signup">
-          <SignupPage />
-        </Route>
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/profile" component={ProfilePage} />
+        <Route exact path="/signup" component={SignupPage} />
+        <Route exact path="/login" component={LoginPage} />
       </Switch>
     </Providers>
   );

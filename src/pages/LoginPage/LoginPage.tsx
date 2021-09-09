@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Grid, Button, Box } from "@material-ui/core";
@@ -112,6 +112,7 @@ const useStyles = makeStyles((theme) => ({
 type Status = "success" | "warning" | "error";
 
 function Login() {
+  const history = useHistory();
   const classes = useStyles();
   const dispatch = useAppDispatch();
   const { isLogin, user, errors, loading } = useAppSelector(
@@ -141,8 +142,12 @@ function Login() {
       setOpenNotification(true);
 
       dispatch(resetData());
+
+      setTimeout(() => {
+        history.push("/");
+      }, 800);
     }
-  }, [isLogin, user, dispatch]);
+  }, [isLogin, user, dispatch, history]);
 
   const handleSubmit = (values: any, actions: any) => {
     console.log("----here----", values);
@@ -219,6 +224,7 @@ function Login() {
                   className={classes.submit}
                   type="submit"
                   size="large"
+                  disabled={loading}
                 >
                   Login
                 </Button>
