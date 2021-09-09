@@ -8,7 +8,6 @@ import {
   useMediaQuery,
 } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { useLocation } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import cx from "classnames";
 import { Sidebar, ThemeSwitch } from "components";
@@ -67,7 +66,6 @@ const PageWithSidebar: React.FC<PageWithSidebarProps> = ({ children }) => {
   const [darkMode] = useDarkModeManager();
   const mobile = useMediaQuery(theme.breakpoints.down("sm"));
   const classes = useStyles({ darkMode, mobileSidebarHidden });
-  const location = useLocation();
 
   const hideMobileMenu = () => {
     setMobileSidebarHidden(true);

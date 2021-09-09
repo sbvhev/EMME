@@ -4,3 +4,4 @@ export { default as ThemeSwitch } from "./ThemeSwitch";
 export { default as FormInput } from "./FormInput";
 export { default as Checkbox } from "./Checkbox";
 export { default as Notifications } from "./Notifications";
+export { default as SelectCountry } from "./SelectCountry";
