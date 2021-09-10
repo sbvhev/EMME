@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from 'stores/hooks';
 import { fetchLoginUser } from 'stores/reducers/auth';
 import AlertContext from 'context/alert/alertContext';
 
-import AuthPageContainer from 'material/shared/AuthPageContainer';
+import AuthPageContainer from 'material/shared/components/AuthPageContainer';
 import LoginForm, { LoginFormData } from './LoginForm';
 
 const Login = () => {

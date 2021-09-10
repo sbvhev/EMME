@@ -19,7 +19,7 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
 import { getErrorFormatter } from 'material/shared/util';
-import LoadingButton from 'material/shared/LoadingButton';
+import LoadingButton from 'material/shared/components/LoadingButton';
 
 const useStyles = makeStyles((theme) =>
   createStyles({

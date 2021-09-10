@@ -11,9 +11,11 @@ const Routes = () => {
     <>
       <Route exact path="/login" component={Login} />
       <Route exact path="/signup" component={Signup} />
-      <PrivateRoute exact path="/" component={HomePage} />
+      <Route exact path="/" component={HomePage} />
+      <Route exact path="/profile" component={ProfilePage} />
+      {/* <PrivateRoute exact path="/" component={HomePage} />
       <PrivateRoute exact path="/profile" component={ProfilePage} />
-      <Redirect path="*" to="/login" />
+      <Redirect path="*" to="/" /> */}
     </>
   );
 };

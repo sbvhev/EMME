@@ -1,9 +1,10 @@
-import { Layout } from 'layouts';
+import Navbar from 'material/shared/layout/Navbar';
 
-const HomePage = () => (
-  <Layout>
-    <h1 style={{ color: '#fff' }}>HomePage</h1>
-  </Layout>
+const HomePage = (props: any) => (
+  <>
+    <Navbar {...props.children} />
+    TEST
+  </>
 );
 
 export default HomePage;

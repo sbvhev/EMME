@@ -17,8 +17,8 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
 import { getErrorFormatter } from 'material/shared/util';
-import LoadingButton from 'material/shared/LoadingButton';
-import TermsCheckbox from 'material/shared/TermsCheckbox';
+import LoadingButton from 'material/shared/components/LoadingButton';
+import TermsCheckbox from 'material/shared/components/TermsCheckbox';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) =>
