@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { useHistory } from 'react-router-dom';
 
 import AuthPageContainer from 'material/shared/AuthPageContainer';
 import { Notifications } from 'components';
@@ -23,9 +24,11 @@ const useStyles = makeStyles((theme) => ({
 type Status = 'success' | 'warning' | 'error';
 
 const Signup = () => {
+  const history = useHistory();
   const classes = useStyles();
   const dispatch = useAppDispatch();
   const authStore = useAppSelector((state) => state.auth);
+
   console.log('authStore; ', authStore);
 
   const [openNotification, setOpenNotification] = useState(false);
@@ -39,6 +42,7 @@ const Signup = () => {
       setNotifyType('warning');
 
       setOpenNotification(true);
+      setIsLoading(false);
     }
   }, [authStore.errors, authStore.isRegister]);
 
@@ -50,29 +54,20 @@ const Signup = () => {
       setOpenNotification(true);
 
       dispatch(resetData());
+      setTimeout(() => {
+        setIsLoading(false);
+        history.push('/home');
+      }, 1000);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authStore.isRegister, authStore.user, dispatch]);
 
-  // const handleSubmit = (values: any, actions: any) => {
-  //   console.log('----here----', values);
-
-  //   dispatch(fetchCreateUser(values));
-  // };
-
-  const handleSubmit = ({
-    email,
-    firstName,
-    lastName,
-    password,
-  }: Pick<SignupFormData, 'email' | 'firstName' | 'lastName' | 'password'>) => {
-    console.log('register');
+  const handleSubmit = (
+    formData: Pick<SignupFormData, 'email' | 'firstName' | 'lastName' | 'password'>
+  ) => {
+    console.log('register', formData);
     setIsLoading(true);
-
-    // try {
-    //   signup;
-    // } catch (error) {
-    //   console.log(error)
-    // }
+    dispatch(fetchCreateUser(formData));
   };
 
   return (

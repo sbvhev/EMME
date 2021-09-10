@@ -54,12 +54,7 @@ const Login = () => {
 
   const onLogin = async (formData: LoginFormData) => {
     console.log('onLogin', formData);
-
-    // try {
-    //   login;
-    // } catch (error) {
-    //   console.log(error)
-    // }
+    dispatch(fetchLoginUser(formData));
   };
 
   return (

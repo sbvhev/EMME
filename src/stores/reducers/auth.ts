@@ -1,35 +1,36 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+
 import { API_URL } from 'config/index';
 
 import type { RootState } from '../store';
 
+import { SignupFormData } from 'pages/SignupPage/SignupForm';
+import { LoginFormData } from 'pages/LoginPage/LoginForm';
+
 export const fetchCreateUser = createAsyncThunk(
   'auth/create-user',
-  async (options: object, { rejectWithValue }) => {
+  async (
+    options: Pick<SignupFormData, 'email' | 'firstName' | 'lastName' | 'password'>,
+    { rejectWithValue }
+  ) => {
     try {
       const response = await axios.post(`${API_URL}/users`, options);
       return response.data;
     } catch (error: any) {
-      console.log('response: ', error.response.data);
+      console.log('error response: ', error.response.data);
       return rejectWithValue(error.response.data);
     }
   }
 );
 
-type AddUser = {
-  email: string;
-  password: string;
-};
-
 export const fetchLoginUser = createAsyncThunk(
   'auth/login',
-  async (options: AddUser, { rejectWithValue }) => {
+  async ({ email, password }: LoginFormData, { rejectWithValue }) => {
     try {
-      const username = options.email;
-      const password = options.password;
+      const username = email;
 
-      const token = Buffer.from(`${username}:${password}`, 'utf8').toString('base64');
+      const token = btoa(`${username}:${password}`);
       const response = await axios.post(
         `${API_URL}/users/login`,
         {},
