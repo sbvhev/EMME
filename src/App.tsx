@@ -20,9 +20,10 @@ interface ThemeProviderProps {
 
 const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const darkModeMediaQuery = useRef(window.matchMedia('(prefers-color-scheme: dark)'));
-  const [themeCfg, changeThemeCfg] = useState<ThemeType>(
-    darkModeMediaQuery.current?.matches ? ThemeType.darkTheme : ThemeType.lightTheme
-  );
+  const [themeCfg, changeThemeCfg] = useState<ThemeType>(ThemeType.lightTheme);
+  // const [themeCfg, changeThemeCfg] = useState<ThemeType>(
+  //   darkModeMediaQuery.current?.matches ? ThemeType.darkTheme : ThemeType.lightTheme
+  // );
 
   useEffect(() => {
     const setThemeFromMediaQuery = (e: MediaQueryListEvent) => {
