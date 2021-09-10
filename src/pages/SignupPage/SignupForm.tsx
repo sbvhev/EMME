@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
+import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { Link as MaterialLink } from '@material-ui/core';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import TextField from '@material-ui/core/TextField';
@@ -16,6 +19,22 @@ import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import { getErrorFormatter } from 'material/shared/util';
 import LoadingButton from 'material/shared/LoadingButton';
 import TermsCheckbox from 'material/shared/TermsCheckbox';
+import Typography from '@material-ui/core/Typography';
+
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    otherText: {
+      fontSize: '14px',
+      lineHeight: '16px',
+      fontWeight: 'bold',
+      marginTop: '32px',
+      marginBottom: theme.spacing(2),
+      '& a': {
+        color: '#3772FF',
+      },
+    },
+  })
+);
 
 const validationSchema = Yup.object({
   email: Yup.string().email('It should be valid email address!').required('Required'),
@@ -52,6 +71,8 @@ interface SignupFormProps {
 }
 
 export const SignupForm = ({ onSubmit, loading }: SignupFormProps) => {
+  const classes = useStyles();
+
   const [showPassword, setShowPassword] = useState(false);
 
   const { handleSubmit, handleChange, values, errors, touched, setFieldTouched, isValid } =
@@ -213,6 +234,12 @@ export const SignupForm = ({ onSubmit, loading }: SignupFormProps) => {
           isDisabled={!touched?.email || !isValid}
         />
       </div>
+      <Typography component="div" align="right" className={classes.otherText}>
+        Already have an account?{' '}
+        <MaterialLink component={Link} underline="none" to="/login">
+          Login
+        </MaterialLink>
+      </Typography>
     </form>
   );
 };

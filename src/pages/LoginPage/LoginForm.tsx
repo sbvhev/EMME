@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
@@ -28,8 +27,8 @@ const useStyles = makeStyles((theme) =>
       fontSize: '14px',
       lineHeight: '16px',
       fontWeight: 'bold',
-      marginTop: '32px',
-      marginBottom: theme.spacing(2),
+      marginTop: theme.spacing(4),
+      marginBottom: theme.spacing(6),
       '& a': {
         color: '#3772FF',
       },
@@ -86,11 +85,11 @@ export const LoginForm = ({ onSubmit, onIsDisabled, loading }: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} noValidate >
+    <form onSubmit={handleSubmit} noValidate>
       <div>
         <Grid item>
           <TextField
-            label="Email"
+            label="Email Address"
             value={values.email}
             onChange={handleEmailChange}
             onBlur={() => setFieldTouched('email')}

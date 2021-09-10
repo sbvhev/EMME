@@ -51,7 +51,7 @@ const TermsCheckbox = ({ touched, values, handleChange, errors, setFieldTouched 
         label={
           <Typography component="div" className={classes.otherText}>
             By signing up I agree that I’m 18 years of age or older, to the{' '}
-            <Link href="www.google.com" target="_blank" rel="noreferrer" underline="none">
+            <Link href="http://www.google.com" target="_blank" rel="noreferrer" underline="none">
               User Agreements, Privacy Policy, Cookie Policy, E-Sign Consent.
             </Link>
           </Typography>
