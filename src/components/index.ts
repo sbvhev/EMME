@@ -5,3 +5,5 @@ export { default as FormInput } from "./FormInput";
 export { default as Checkbox } from "./Checkbox";
 export { default as Notifications } from "./Notifications";
 export { default as SelectCountry } from "./SelectCountry";
+export { default as Switch } from "./Switch";
+export { default as Logo } from "./Logo";

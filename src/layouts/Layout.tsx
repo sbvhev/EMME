@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import { useHistory } from "react-router-dom";
 import {
   alpha,
   makeStyles,
@@ -28,10 +29,9 @@ import {
   Menu,
   Divider,
   Button,
-  Switch,
 } from "@material-ui/core";
 
-import Logo from "components/Logo";
+import { Logo, Switch } from "components";
 import BellIcon from "assets/icons/bell.svg";
 import UserImg from "assets/images/user.png";
 import FbIcon from "assets/icons/facebook.svg";
@@ -245,6 +245,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Layout: React.FC<Props> = ({ children }) => {
   const classes = useStyles();
+  const history = useHistory();
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [anchorElProfile, setAnchorElProfile] =
     React.useState<null | HTMLElement>(null);
@@ -293,6 +295,15 @@ const Layout: React.FC<Props> = ({ children }) => {
 
   const handleOpenMenuOrder = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElOrder(event.currentTarget);
+  };
+
+  const handleSelectMenuProfile = (name: string) => {
+    if (name === "profile") {
+      history.push("/profile");
+    }
+    if (name === "settings") {
+      history.push("/settings");
+    }
   };
 
   const menuId = "primary-search-account-menu";
@@ -460,7 +471,7 @@ const Layout: React.FC<Props> = ({ children }) => {
                 classes={{
                   root: classes.menuItemCustom,
                 }}
-                onClick={handleCloseProfile}
+                onClick={() => handleSelectMenuProfile("profile")}
               >
                 <div className={classes.menuItemOrder}>
                   <PermIdentityIcon className={classes.profileIcon} />
@@ -478,7 +489,7 @@ const Layout: React.FC<Props> = ({ children }) => {
                 classes={{
                   root: classes.menuItemCustom,
                 }}
-                onClick={handleCloseProfile}
+                onClick={() => handleSelectMenuProfile("settings")}
               >
                 <div className={classes.menuItemOrder}>
                   <SettingsIcon className={classes.profileIcon} />
@@ -496,7 +507,7 @@ const Layout: React.FC<Props> = ({ children }) => {
                 classes={{
                   root: classes.menuItemCustom,
                 }}
-                onClick={handleCloseProfile}
+                onClick={() => handleSelectMenuProfile("darkMode")}
               >
                 <div className={classes.menuItemOrder}>
                   <WbSunnyIcon className={classes.profileIcon} />
@@ -504,14 +515,15 @@ const Layout: React.FC<Props> = ({ children }) => {
                   <div className={classes.menuItemProfileText}>
                     <h5 className={classes.profileTitle}>
                       Dark mode
-                      <Switch
-                        className={classes.switchMode}
-                        checked={darkMode}
-                        onChange={handleChangeMode}
-                        color="primary"
-                        name="checkedB"
-                        inputProps={{ "aria-label": "primary checkbox" }}
-                      />
+                      <div className={classes.switchMode}>
+                        <Switch
+                          checked={darkMode}
+                          onChange={handleChangeMode}
+                          color="primary"
+                          name="darkMode"
+                          inputProps={{ "aria-label": "primary checkbox" }}
+                        />
+                      </div>
                     </h5>
                     <p className={classes.profileSubText}>
                       Switch dark/light mode
@@ -525,7 +537,7 @@ const Layout: React.FC<Props> = ({ children }) => {
                 classes={{
                   root: classes.menuItemCustom,
                 }}
-                onClick={handleCloseProfile}
+                onClick={() => handleSelectMenuProfile("logout")}
               >
                 <div className={classes.menuItemOrder}>
                   <ExitToAppIcon className={classes.profileIcon} />

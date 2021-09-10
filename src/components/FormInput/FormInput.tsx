@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
 
 export interface FormInputControlProps {
   touched?: boolean;
-  error?: string;
+  error?: string | any;
   value?: string;
   handleBlur?: (e: React.FocusEvent<any>) => void;
   handleChange?: (e: React.ChangeEvent<any>) => void;

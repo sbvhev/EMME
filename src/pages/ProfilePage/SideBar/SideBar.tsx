@@ -15,6 +15,7 @@ import LockIcon from "@material-ui/icons/Lock";
 
 interface Props {
   active?: number;
+  onChange: (value: number) => void
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -32,20 +33,35 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: "14px",
       lineHeight: "16px",
     },
+    menuTextActive: {
+      color: "#FCFCFD",
+      fontSize: "14px",
+      lineHeight: "16px",
+    },
     icon: {
       fontSize: "16px",
       minWidth: "auto",
       marginRight: "8px",
       color: "#777E91",
     },
+    iconActive: {
+      fontSize: "16px",
+      minWidth: "auto",
+      marginRight: "8px",
+      color: "#FCFCFD",
+    },
     listItem: {
       padding: "12px 0",
       margin: 0,
     },
+    itemSelected: {
+      background: "none !important",
+      color: "#FCFCFD !important",
+    },
   })
 );
 
-const SideBar: React.FC<Props> = ({ active }) => {
+const SideBar: React.FC<Props> = ({ active, onChange }) => {
   const classes = useStyles();
 
   return (
@@ -58,32 +74,44 @@ const SideBar: React.FC<Props> = ({ active }) => {
         <ListItem
           classes={{
             root: classes.listItem,
+            selected: classes.itemSelected,
           }}
           button
+          selected={active === 1}
+          onClick={() => onChange(1)}
         >
           <ListItemIcon
             classes={{
-              root: classes.icon,
+              root: active === 1 ? classes.iconActive : classes.icon,
             }}
           >
             <PermIdentityIcon />
           </ListItemIcon>
-          <ListItemText className={classes.menuText} primary="Profile" />
+          <ListItemText
+            className={active === 1 ? classes.menuTextActive : classes.menuText}
+            primary="Profile"
+          />
         </ListItem>
         <ListItem
           classes={{
             root: classes.listItem,
+            selected: classes.itemSelected,
           }}
           button
+          selected={active === 2}
+          onClick={() => onChange(2)}
         >
           <ListItemIcon
             classes={{
-              root: classes.icon,
+              root: active === 2 ? classes.iconActive : classes.icon,
             }}
           >
             <KeyboardIcon />
           </ListItemIcon>
-          <ListItemText className={classes.menuText} primary="API keys" />
+          <ListItemText
+            className={active === 2 ? classes.menuTextActive : classes.menuText}
+            primary="API keys"
+          />
         </ListItem>
 
         <Divider />
@@ -91,18 +119,21 @@ const SideBar: React.FC<Props> = ({ active }) => {
         <ListItem
           classes={{
             root: classes.listItem,
+            selected: classes.itemSelected,
           }}
           button
+          selected={active === 3}
+          onClick={() => onChange(3)}
         >
           <ListItemIcon
             classes={{
-              root: classes.icon,
+              root: active === 3 ? classes.iconActive : classes.icon,
             }}
           >
             <ComputerIcon />
           </ListItemIcon>
           <ListItemText
-            className={classes.menuText}
+            className={active === 3 ? classes.menuTextActive : classes.menuText}
             primary="Sessions & login history"
           />
         </ListItem>
@@ -110,18 +141,21 @@ const SideBar: React.FC<Props> = ({ active }) => {
         <ListItem
           classes={{
             root: classes.listItem,
+            selected: classes.itemSelected,
           }}
           button
+          selected={active === 4}
+          onClick={() => onChange(4)}
         >
           <ListItemIcon
             classes={{
-              root: classes.icon,
+              root: active === 4 ? classes.iconActive : classes.icon,
             }}
           >
             <LockIcon />
           </ListItemIcon>
           <ListItemText
-            className={classes.menuText}
+            className={active === 4 ? classes.menuTextActive : classes.menuText}
             primary="Change password"
           />
         </ListItem>

@@ -1,27 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-
-import {
-  Breadcrumbs,
-  Typography,
-  Link,
-  Grid,
-  Chip,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemSecondaryAction,
-  Switch,
-  ListSubheader,
-  Button,
-} from "@material-ui/core";
+import { Breadcrumbs, Typography, Link, Grid } from "@material-ui/core";
 // icons
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 
 // components
 import { Layout } from "layouts";
-import { SelectCountry } from "components";
 import SideBar from "./SideBar";
+import ProfileInfo from "./ProfileInfo";
+import ApiKeys from "./ApiKeys";
+import Sessions from "./Sessions";
+import ChangePassword from "./ChangePassword";
 
 interface Props {
   title?: string;
@@ -136,27 +126,21 @@ const useStyles = makeStyles({
 
 const ProfilePage: React.FC<Props> = ({ title }) => {
   const classes = useStyles();
-  const [checked, setChecked] = React.useState(["wifi"]);
+  const history = useHistory();
+  const [menuIndex, setMenuIndex] = useState(2);
 
   const handleClick = (
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => {
     event.preventDefault();
     console.info("You clicked a breadcrumb.");
+    history.push("/");
   };
 
-  const handleToggle = (value: string) => () => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-
-    setChecked(newChecked);
+  const handleChangeMenu = (index: number) => {
+    setMenuIndex(index);
   };
+
   return (
     <Layout>
       <div className={classes.main}>
@@ -191,181 +175,14 @@ const ProfilePage: React.FC<Props> = ({ title }) => {
         <div>
           <Grid container spacing={6}>
             <Grid item md={3}>
-              <SideBar active={1} />
+              <SideBar active={menuIndex} onChange={handleChangeMenu} />
             </Grid>
 
             <Grid item md={9}>
-              <div className={classes.boxContent}>
-                <div className={classes.mainHeader}>
-                  <div className={classes.headerLeft}>
-                    <h3 className={classes.mainTitle}>Breanne Schinner</h3>
-                    <p className={classes.mainSub}>schinner@icloud.com</p>
-                    <Chip
-                      classes={{
-                        root: classes.chipRoot,
-                      }}
-                      label="EM.ME Balance: 50,000"
-                      variant="outlined"
-                    />
-                  </div>
-
-                  <SelectCountry value={1} />
-                </div>
-
-                <div>
-                  <h2 className={`${classes.mainTitle} ${classes.mb24}`}>
-                    Features
-                  </h2>
-
-                  <List
-                    subheader={
-                      <ListSubheader
-                        classes={{
-                          root: classes.listItemSubheader,
-                        }}
-                      >
-                        level 1
-                      </ListSubheader>
-                    }
-                    className={classes.root}
-                  >
-                    <ListItem
-                      classes={{
-                        root: classes.listItem,
-                      }}
-                    >
-                      <ListItemText
-                        id="switch-list-label-wifi"
-                        primary="Deposit assets"
-                      />
-                      <ListItemSecondaryAction>
-                        <Switch
-                          color="primary"
-                          edge="end"
-                          onChange={handleToggle("deposit")}
-                          checked={checked.indexOf("deposit") !== -1}
-                          inputProps={{
-                            "aria-labelledby": "switch-list-label-wifi",
-                          }}
-                        />
-                      </ListItemSecondaryAction>
-                    </ListItem>
-                    <ListItem
-                      classes={{
-                        root: classes.listItem,
-                      }}
-                    >
-                      <ListItemText
-                        id="switch-list-label-bluetooth"
-                        primary="Withdraw assets"
-                      />
-                      <ListItemSecondaryAction>
-                        <p className={classes.moreTextDark}>
-                          Enabled $1,000,000/day
-                        </p>
-                      </ListItemSecondaryAction>
-                    </ListItem>
-                    <ListItem
-                      classes={{
-                        root: classes.listItem,
-                      }}
-                    >
-                      <ListItemText
-                        id="switch-list-label-bluetooth"
-                        primary="Card purchases"
-                      />
-                      <ListItemSecondaryAction>
-                        <Switch
-                          color="primary"
-                          edge="end"
-                          onChange={handleToggle("purchases")}
-                          checked={checked.indexOf("purchases") !== -1}
-                          inputProps={{
-                            "aria-labelledby": "switch-list-label-bluetooth",
-                          }}
-                        />
-                      </ListItemSecondaryAction>
-                    </ListItem>
-                    <ListItem
-                      classes={{
-                        root: classes.listItem,
-                      }}
-                    >
-                      <ListItemText
-                        id="switch-list-label-bluetooth"
-                        primary="Bank deposit"
-                      />
-                      <ListItemSecondaryAction>
-                        <Switch
-                          color="primary"
-                          edge="end"
-                          onChange={handleToggle("bankDeposit")}
-                          checked={checked.indexOf("bankDeposit") !== -1}
-                          inputProps={{
-                            "aria-labelledby": "switch-list-label-bluetooth",
-                          }}
-                        />
-                      </ListItemSecondaryAction>
-                    </ListItem>
-                  </List>
-
-                  <List
-                    subheader={
-                      <ListSubheader
-                        classes={{
-                          root: classes.listItemSubheader,
-                        }}
-                      >
-                        level 2
-                      </ListSubheader>
-                    }
-                    className={classes.root}
-                  >
-                    <ListItem
-                      classes={{
-                        root: classes.listItem,
-                      }}
-                    >
-                      <ListItemText
-                        id="switch-list-label-wifi"
-                        primary="Fiat and Spot wallet"
-                      />
-                      <ListItemSecondaryAction>
-                        <Switch
-                          color="primary"
-                          edge="end"
-                          onChange={handleToggle("spotWallet")}
-                          checked={checked.indexOf("spotWallet") !== -1}
-                          inputProps={{
-                            "aria-labelledby": "switch-list-label-wifi",
-                          }}
-                        />
-                      </ListItemSecondaryAction>
-                    </ListItem>
-                    <ListItem
-                      classes={{
-                        root: classes.listItem,
-                      }}
-                    >
-                      <ListItemText
-                        id="switch-list-label-bluetooth"
-                        primary="Margin wallet"
-                      />
-                      <ListItemSecondaryAction>
-                        <p className={classes.moreTextDark}>
-                          Enabled 100x Leverage
-                        </p>
-                      </ListItemSecondaryAction>
-                    </ListItem>
-                  </List>
-                </div>
-
-                <div className={classes.action}>
-                  <Button className={classes.btnSave} color="primary">
-                    Save settings
-                  </Button>
-                </div>
-              </div>
+              {menuIndex === 1 && <ProfileInfo />}
+              {menuIndex === 2 && <ApiKeys />}
+              {menuIndex === 3 && <Sessions />}
+              {menuIndex === 4 && <ChangePassword />}
             </Grid>
           </Grid>
         </div>
