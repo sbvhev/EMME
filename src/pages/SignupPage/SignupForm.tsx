@@ -70,7 +70,7 @@ interface SignupFormProps {
   loading: boolean;
 }
 
-export const SignupForm = ({ onSubmit, loading }: SignupFormProps) => {
+const SignupForm = ({ onSubmit, loading }: SignupFormProps) => {
   const classes = useStyles();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -243,3 +243,5 @@ export const SignupForm = ({ onSubmit, loading }: SignupFormProps) => {
     </form>
   );
 };
+
+export default SignupForm;

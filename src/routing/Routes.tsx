@@ -1,6 +1,7 @@
 import { Redirect, Route } from 'react-router-dom';
 
 import PrivateRoute from './PrivateRoute';
+
 import Signup from 'pages/SignupPage';
 import Login from 'pages/LoginPage';
 import { HomePage, ProfilePage } from 'pages';

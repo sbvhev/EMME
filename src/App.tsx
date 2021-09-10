@@ -4,8 +4,10 @@ import { Provider as StateProvider } from 'react-redux';
 import { CssBaseline } from '@material-ui/core';
 
 import { store } from './stores/store';
+import AlertState from 'context/alert/AlertState';
 
 import ThemeSwitcher, { ThemeType } from 'material/ThemeSwitcher';
+import Alerts from 'material/shared/Alerts';
 import Routes from 'routing/Routes';
 
 const StateUpdaters = () => {
@@ -17,7 +19,6 @@ interface ThemeProviderProps {
 }
 
 const ThemeProvider = ({ children }: ThemeProviderProps) => {
-
   const darkModeMediaQuery = useRef(window.matchMedia('(prefers-color-scheme: dark)'));
   const [themeCfg, changeThemeCfg] = useState<ThemeType>(
     !darkModeMediaQuery.current?.matches ? ThemeType.darkTheme : ThemeType.lightTheme
@@ -48,9 +49,12 @@ const App = () => {
 
           <ThemeProvider>
             <CssBaseline />
-            <Switch>
-              <Routes />
-            </Switch>
+            <AlertState>
+              <Switch>
+                <Routes />
+              </Switch>
+              <Alerts />
+            </AlertState>
           </ThemeProvider>
         </StateProvider>
       </Suspense>
