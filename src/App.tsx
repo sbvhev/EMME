@@ -20,7 +20,7 @@ const ThemeProvider = ({ children }: ThemeProviderProps) => {
 
   const darkModeMediaQuery = useRef(window.matchMedia('(prefers-color-scheme: dark)'));
   const [themeCfg, changeThemeCfg] = useState<ThemeType>(
-    darkModeMediaQuery.current?.matches ? ThemeType.darkTheme : ThemeType.lightTheme
+    !darkModeMediaQuery.current?.matches ? ThemeType.darkTheme : ThemeType.lightTheme
   );
 
   useEffect(() => {

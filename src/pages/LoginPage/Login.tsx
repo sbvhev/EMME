@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from 'stores/hooks';
 import { fetchLoginUser, resetData } from 'stores/reducers/auth';
 
 import LoginForm, { LoginFormData } from './LoginForm';
-import TwoColumnContainer from 'material/shared/TwoColumnContainer';
+import AuthPageContainer from 'material/shared/AuthPageContainer';
 
 const useStyles = makeStyles((theme) => ({
   submit: {
@@ -64,7 +64,7 @@ const Login = () => {
 
   return (
     <>
-      <TwoColumnContainer
+      <AuthPageContainer
         columnTitle="Sign in to EM.ME"
         columnComponent={<LoginForm onSubmit={onLogin} loading={loading} />}
       />

@@ -56,7 +56,7 @@ const lightTheme = () => {
       },
       {},
       ...[
-        { breakpoints: themeBase.breakpoints },
+        // { breakpoints: themeBase.breakpoints },
         { typography: themeBase.typography },
       ]
     )

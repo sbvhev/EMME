@@ -1,17 +1,17 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { API_URL } from "config/index";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { API_URL } from 'config/index';
 
-import type { RootState } from "../store";
+import type { RootState } from '../store';
 
 export const fetchCreateUser = createAsyncThunk(
-  "auth/create-user",
+  'auth/create-user',
   async (options: object, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${API_URL}users`, options);
+      const response = await axios.post(`${API_URL}/users`, options);
       return response.data;
     } catch (error: any) {
-      console.log("response: ", error.response.data);
+      console.log('response: ', error.response.data);
       return rejectWithValue(error.response.data);
     }
   }
@@ -21,18 +21,17 @@ type AddUser = {
   email: string;
   password: string;
 };
+
 export const fetchLoginUser = createAsyncThunk(
-  "auth/login",
+  'auth/login',
   async (options: AddUser, { rejectWithValue }) => {
     try {
       const username = options.email;
       const password = options.password;
 
-      const token = Buffer.from(`${username}:${password}`, "utf8").toString(
-        "base64"
-      );
+      const token = Buffer.from(`${username}:${password}`, 'utf8').toString('base64');
       const response = await axios.post(
-        `${API_URL}users/login`,
+        `${API_URL}/users/login`,
         {},
         {
           headers: {
@@ -42,10 +41,8 @@ export const fetchLoginUser = createAsyncThunk(
       );
       return response.data;
     } catch (error: any) {
-      console.log("response: ", error.response.data);
-      return rejectWithValue(
-        error.response.data || { message: "Username or password incorrect." }
-      );
+      console.log('response: ', error.response.data);
+      return rejectWithValue(error.response.data || { message: 'Username or password incorrect.' });
     }
   }
 );
@@ -67,7 +64,7 @@ const initialState: Props = {
 };
 
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState: initialState,
   reducers: {
     resetData: (state) => {
