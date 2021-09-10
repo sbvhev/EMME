@@ -1,5 +1,5 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 
 import {
   Breadcrumbs,
@@ -14,135 +14,129 @@ import {
   Switch,
   ListSubheader,
   Button,
-} from "@material-ui/core";
+} from '@material-ui/core';
 // icons
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 // components
-import { Layout } from "layouts";
-import { SelectCountry } from "components";
-import SideBar from "./SideBar";
-
-interface Props {
-  title?: string;
-}
+import { Layout } from 'layouts';
+import { SelectCountry } from 'components';
+import SideBar from './SideBar';
 
 const useStyles = makeStyles({
   root: {
-    width: "100%",
+    width: '100%',
   },
   main: {
-    maxWidth: "1024px",
-    margin: "0 auto 80px",
+    maxWidth: '1024px',
+    margin: '0 auto 80px',
   },
   header: {
-    display: "inline-flex",
-    alignItems: "center",
-    padding: "40px",
-    width: "100%",
-    marginBottom: "81px",
+    display: 'inline-flex',
+    alignItems: 'center',
+    padding: '40px',
+    width: '100%',
+    marginBottom: '81px',
   },
   title: {
-    color: "#FCFCFD",
-    fontSize: "48px",
-    lineHeight: "56px",
-    margin: "0 auto 0 0",
+    color: '#FCFCFD',
+    fontSize: '48px',
+    lineHeight: '56px',
+    margin: '0 auto 0 0',
   },
   breadLi: {},
   linkText: {
-    color: "#777E91 !important",
-    fontSize: "12px",
-    lineHeight: "20px",
+    color: '#777E91 !important',
+    fontSize: '12px',
+    lineHeight: '20px',
   },
   linkTextActive: {
-    color: "#F4F5F6 !important",
-    fontSize: "12px",
+    color: '#F4F5F6 !important',
+    fontSize: '12px',
 
-    lineHeight: "20px",
+    lineHeight: '20px',
   },
   boxContent: {
-    background: "#18191D",
-    boxShadow: "0px 64px 64px -48px rgba(15, 15, 15, 0.1)",
-    borderRadius: "16px",
-    padding: "49px 40px",
+    background: '#18191D',
+    boxShadow: '0px 64px 64px -48px rgba(15, 15, 15, 0.1)',
+    borderRadius: '16px',
+    padding: '49px 40px',
   },
   mainHeader: {
-    display: "inline-flex",
-    alignItems: "flex-start",
-    marginBottom: "48px",
-    width: "100%",
+    display: 'inline-flex',
+    alignItems: 'flex-start',
+    marginBottom: '48px',
+    width: '100%',
   },
   mainTitle: {
-    fontSize: "24px",
-    lineHeight: "32px",
-    margin: "0 0",
-    color: "#FCFCFD",
+    fontSize: '24px',
+    lineHeight: '32px',
+    margin: '0 0',
+    color: '#FCFCFD',
   },
   mainSub: {
-    fontSize: "14px",
-    lineHeight: "24px",
-    color: "#777E91",
-    margin: "0 0 21px",
+    fontSize: '14px',
+    lineHeight: '24px',
+    color: '#777E91',
+    margin: '0 0 21px',
   },
   chipRoot: {
-    border: "2px solid #353945",
-    borderRadius: "90px",
-    padding: "8px 0px",
-    color: "#58BD7D",
-    fontSize: "14px",
-    lineHeight: "16px",
+    border: '2px solid #353945',
+    borderRadius: '90px',
+    padding: '8px 0px',
+    color: '#58BD7D',
+    fontSize: '14px',
+    lineHeight: '16px',
   },
   listItem: {
-    padding: "12px 0px",
+    padding: '12px 0px',
   },
   listItemSubheader: {
-    padding: "16px 0 24px",
-    textTransform: "uppercase",
-    color: "#B1B5C4",
-    fontSize: "12px",
-    lineHeight: "12px",
-    borderBottom: "1px solid #353945",
+    padding: '16px 0 24px',
+    textTransform: 'uppercase',
+    color: '#B1B5C4',
+    fontSize: '12px',
+    lineHeight: '12px',
+    borderBottom: '1px solid #353945',
   },
   mb24: {
-    marginBottom: "24px",
+    marginBottom: '24px',
   },
   moreTextDark: {
-    color: "#777E91",
-    fontSize: "14px",
-    lineHeight: "24px",
+    color: '#777E91',
+    fontSize: '14px',
+    lineHeight: '24px',
     fontWeight: 500,
-    margin: "0",
+    margin: '0',
   },
   action: {
-    width: "100%",
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    marginTop: "24px",
+    width: '100%',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    marginTop: '24px',
   },
   btnSave: {
-    width: "auto",
-    padding: "16px 24px",
-    background: "#3772FF",
-    borderRadius: "90px",
-    color: "#FCFCFD",
-    fontSize: "16px",
-    lineHeight: "16px",
+    width: 'auto',
+    padding: '16px 24px',
+    background: '#3772FF',
+    borderRadius: '90px',
+    color: '#FCFCFD',
+    fontSize: '16px',
+    lineHeight: '16px',
   },
   headerLeft: {
-    marginRight: "auto",
+    marginRight: 'auto',
   },
 });
 
-const ProfilePage: React.FC<Props> = ({ title }) => {
+const ProfilePage = () => {
   const classes = useStyles();
-  const [checked, setChecked] = React.useState(["wifi"]);
+  const [checked, setChecked] = React.useState(['wifi']);
 
-  const handleClick = (
-    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-  ) => {
+  const handleClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     event.preventDefault();
-    console.info("You clicked a breadcrumb.");
+    console.info('You clicked a breadcrumb.');
   };
 
   const handleToggle = (value: string) => () => {
@@ -163,10 +157,7 @@ const ProfilePage: React.FC<Props> = ({ title }) => {
         <div className={classes.header}>
           <h3 className={classes.title}>Profile info</h3>
 
-          <Breadcrumbs
-            separator={<NavigateNextIcon fontSize="small" />}
-            aria-label="breadcrumb"
-          >
+          <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
             <Link
               color="inherit"
               href="/"
@@ -213,9 +204,7 @@ const ProfilePage: React.FC<Props> = ({ title }) => {
                 </div>
 
                 <div>
-                  <h2 className={`${classes.mainTitle} ${classes.mb24}`}>
-                    Features
-                  </h2>
+                  <h2 className={`${classes.mainTitle} ${classes.mb24}`}>Features</h2>
 
                   <List
                     subheader={
@@ -234,18 +223,15 @@ const ProfilePage: React.FC<Props> = ({ title }) => {
                         root: classes.listItem,
                       }}
                     >
-                      <ListItemText
-                        id="switch-list-label-wifi"
-                        primary="Deposit assets"
-                      />
+                      <ListItemText id="switch-list-label-wifi" primary="Deposit assets" />
                       <ListItemSecondaryAction>
                         <Switch
                           color="primary"
                           edge="end"
-                          onChange={handleToggle("deposit")}
-                          checked={checked.indexOf("deposit") !== -1}
+                          onChange={handleToggle('deposit')}
+                          checked={checked.indexOf('deposit') !== -1}
                           inputProps={{
-                            "aria-labelledby": "switch-list-label-wifi",
+                            'aria-labelledby': 'switch-list-label-wifi',
                           }}
                         />
                       </ListItemSecondaryAction>
@@ -255,14 +241,9 @@ const ProfilePage: React.FC<Props> = ({ title }) => {
                         root: classes.listItem,
                       }}
                     >
-                      <ListItemText
-                        id="switch-list-label-bluetooth"
-                        primary="Withdraw assets"
-                      />
+                      <ListItemText id="switch-list-label-bluetooth" primary="Withdraw assets" />
                       <ListItemSecondaryAction>
-                        <p className={classes.moreTextDark}>
-                          Enabled $1,000,000/day
-                        </p>
+                        <p className={classes.moreTextDark}>Enabled $1,000,000/day</p>
                       </ListItemSecondaryAction>
                     </ListItem>
                     <ListItem
@@ -270,18 +251,15 @@ const ProfilePage: React.FC<Props> = ({ title }) => {
                         root: classes.listItem,
                       }}
                     >
-                      <ListItemText
-                        id="switch-list-label-bluetooth"
-                        primary="Card purchases"
-                      />
+                      <ListItemText id="switch-list-label-bluetooth" primary="Card purchases" />
                       <ListItemSecondaryAction>
                         <Switch
                           color="primary"
                           edge="end"
-                          onChange={handleToggle("purchases")}
-                          checked={checked.indexOf("purchases") !== -1}
+                          onChange={handleToggle('purchases')}
+                          checked={checked.indexOf('purchases') !== -1}
                           inputProps={{
-                            "aria-labelledby": "switch-list-label-bluetooth",
+                            'aria-labelledby': 'switch-list-label-bluetooth',
                           }}
                         />
                       </ListItemSecondaryAction>
@@ -291,18 +269,15 @@ const ProfilePage: React.FC<Props> = ({ title }) => {
                         root: classes.listItem,
                       }}
                     >
-                      <ListItemText
-                        id="switch-list-label-bluetooth"
-                        primary="Bank deposit"
-                      />
+                      <ListItemText id="switch-list-label-bluetooth" primary="Bank deposit" />
                       <ListItemSecondaryAction>
                         <Switch
                           color="primary"
                           edge="end"
-                          onChange={handleToggle("bankDeposit")}
-                          checked={checked.indexOf("bankDeposit") !== -1}
+                          onChange={handleToggle('bankDeposit')}
+                          checked={checked.indexOf('bankDeposit') !== -1}
                           inputProps={{
-                            "aria-labelledby": "switch-list-label-bluetooth",
+                            'aria-labelledby': 'switch-list-label-bluetooth',
                           }}
                         />
                       </ListItemSecondaryAction>
@@ -326,18 +301,15 @@ const ProfilePage: React.FC<Props> = ({ title }) => {
                         root: classes.listItem,
                       }}
                     >
-                      <ListItemText
-                        id="switch-list-label-wifi"
-                        primary="Fiat and Spot wallet"
-                      />
+                      <ListItemText id="switch-list-label-wifi" primary="Fiat and Spot wallet" />
                       <ListItemSecondaryAction>
                         <Switch
                           color="primary"
                           edge="end"
-                          onChange={handleToggle("spotWallet")}
-                          checked={checked.indexOf("spotWallet") !== -1}
+                          onChange={handleToggle('spotWallet')}
+                          checked={checked.indexOf('spotWallet') !== -1}
                           inputProps={{
-                            "aria-labelledby": "switch-list-label-wifi",
+                            'aria-labelledby': 'switch-list-label-wifi',
                           }}
                         />
                       </ListItemSecondaryAction>
@@ -347,14 +319,9 @@ const ProfilePage: React.FC<Props> = ({ title }) => {
                         root: classes.listItem,
                       }}
                     >
-                      <ListItemText
-                        id="switch-list-label-bluetooth"
-                        primary="Margin wallet"
-                      />
+                      <ListItemText id="switch-list-label-bluetooth" primary="Margin wallet" />
                       <ListItemSecondaryAction>
-                        <p className={classes.moreTextDark}>
-                          Enabled 100x Leverage
-                        </p>
+                        <p className={classes.moreTextDark}>Enabled 100x Leverage</p>
                       </ListItemSecondaryAction>
                     </ListItem>
                   </List>

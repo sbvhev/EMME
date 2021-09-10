@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { useHistory } from 'react-router-dom';
 
 import { Notifications } from 'components';
 
 import { useAppDispatch, useAppSelector } from 'stores/hooks';
-import { fetchLoginUser, resetData } from 'stores/reducers/auth';
+import { fetchLoginUser } from 'stores/reducers/auth';
 
 import LoginForm, { LoginFormData } from './LoginForm';
 import AuthPageContainer from 'material/shared/AuthPageContainer';
@@ -24,6 +25,7 @@ type Status = 'success' | 'warning' | 'error';
 
 const Login = () => {
   const classes = useStyles();
+  const history = useHistory();
 
   const dispatch = useAppDispatch();
   const { isLogin, user, errors, loading } = useAppSelector((state) => state.auth);
@@ -34,7 +36,7 @@ const Login = () => {
 
   useEffect(() => {
     if (errors && isLogin === false) {
-      setNotifyMessage(errors.message || 'The username or password you entered is incorrect.');
+      setNotifyMessage(errors.message || 'The email or password you have entered do not match.');
       setNotifyType('warning');
 
       setOpenNotification(true);
@@ -48,8 +50,11 @@ const Login = () => {
 
       setOpenNotification(true);
 
-      dispatch(resetData());
+      setTimeout(() => {
+        history.push('/');
+      }, 1000);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLogin, user, dispatch]);
 
   const onLogin = async (formData: LoginFormData) => {

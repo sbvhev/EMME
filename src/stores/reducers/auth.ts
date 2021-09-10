@@ -74,6 +74,9 @@ const authSlice = createSlice({
       state.isLogin = false;
       state.user = null;
     },
+    resetMessage: (state) => {
+      state.errors = null;
+    },
   },
   extraReducers: (builder) => {
     // register
@@ -111,6 +114,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { resetData } = authSlice.actions;
+export const { resetData, resetMessage } = authSlice.actions;
 export const authSelector = (state: RootState) => state.auth;
 export default authSlice.reducer;
