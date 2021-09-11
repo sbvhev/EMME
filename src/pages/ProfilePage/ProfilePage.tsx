@@ -145,7 +145,7 @@ const ProfilePage: React.FC<Props> = ({ title }) => {
     <Layout>
       <div className={classes.main}>
         <div className={classes.header}>
-          <h3 className={classes.title}>Profile info</h3>
+          <h3 className={classes.title}>{menuIndex === 1 ? "Profile info" : "API keys"}</h3>
 
           <Breadcrumbs
             separator={<NavigateNextIcon fontSize="small" />}
@@ -167,7 +167,7 @@ const ProfilePage: React.FC<Props> = ({ title }) => {
                 root: classes.linkTextActive,
               }}
             >
-              Profile info
+              {menuIndex === 1 ? "Profile info" : "API keys"}
             </Typography>
           </Breadcrumbs>
         </div>

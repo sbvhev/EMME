@@ -6,12 +6,12 @@ import {
   ListItemText,
   ListItem,
   ListItemIcon,
-  Divider,
+  // Divider,
 } from "@material-ui/core";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import KeyboardIcon from "@material-ui/icons/Keyboard";
-import ComputerIcon from "@material-ui/icons/Computer";
-import LockIcon from "@material-ui/icons/Lock";
+// import ComputerIcon from "@material-ui/icons/Computer";
+// import LockIcon from "@material-ui/icons/Lock";
 
 interface Props {
   active?: number;
@@ -114,7 +114,7 @@ const SideBar: React.FC<Props> = ({ active, onChange }) => {
           />
         </ListItem>
 
-        <Divider />
+        {/* <Divider />
 
         <ListItem
           classes={{
@@ -158,7 +158,7 @@ const SideBar: React.FC<Props> = ({ active, onChange }) => {
             className={active === 4 ? classes.menuTextActive : classes.menuText}
             primary="Change password"
           />
-        </ListItem>
+        </ListItem> */}
       </List>
     </div>
   );

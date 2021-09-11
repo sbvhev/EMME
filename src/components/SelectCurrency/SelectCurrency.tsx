@@ -75,7 +75,7 @@ const useStyles = makeStyles({
   },
 });
 
-const SelectCountry: React.FC<Props> = ({ value }) => {
+const SelectCurrency: React.FC<Props> = ({ value }) => {
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -145,4 +145,4 @@ const SelectCountry: React.FC<Props> = ({ value }) => {
   );
 };
 
-export default SelectCountry;
+export default SelectCurrency;

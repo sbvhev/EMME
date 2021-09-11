@@ -12,7 +12,9 @@ import {
   TextField,
   FormLabel,
   IconButton,
-  InputAdornment,
+  Select,
+  MenuItem,
+  // InputAdornment,
   // Snackbar,
 } from "@material-ui/core";
 import MailOutlineIconMt from "@material-ui/icons/MailOutline";
@@ -180,6 +182,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: "14px",
       marginLeft: "17px",
       padding: "0",
+      color: '#777E91'
     },
     inputCustom: {
       width: "calc(100% - 31px)",
@@ -226,14 +229,37 @@ const useStyles = makeStyles((theme: Theme) =>
         width: 61,
       },
     },
+    selectBox: {
+      width: "calc(100% - 31px)",
+      border: "none",
+      background: "#23262F",
+      borderRadius: "12px",
+      padding: 0,
+    },
+    select: {
+      color: "#FCFCFD",
+      fontSize: "14px",
+      lineHeight: "24px",
+      fontWeight: 500,
+      padding: 0,
+    },
+    iconSelect: {
+      right: "10px",
+    },
+    outlineSelect: {
+      padding: "12px 16px !important",
+
+      // paddingLeft: "0 !important",
+    },
   })
 );
 
 const ApiKeys: React.FC<Props> = () => {
   const classes = useStyles();
 
-  const [status, setStatus] = useState<StatusType>("disabled");
+  const [status, setStatus] = useState<StatusType>("enabled");
   const [copied, setCopied] = useState(false);
+  const [exchange, setExchange] = useState("1");
   const [enabledData, setEnabledData] = useState({
     clientId: "theschinner",
     apiKey: "OI8YEFOOP54SD54SDYEFO94YEFO",
@@ -254,6 +280,12 @@ const ApiKeys: React.FC<Props> = () => {
 
   const handleDisableApiKey = () => {
     setStatus("disabled");
+  };
+
+  const handleChangeExchange = (
+    event: React.ChangeEvent<{ value: unknown }>
+  ) => {
+    setExchange(event.target.value as string);
   };
 
   const validationSchema = yup.object({
@@ -386,7 +418,8 @@ const ApiKeys: React.FC<Props> = () => {
             Enable API access on your account to generate rounds.
           </p>
           <h3 className={classes.title}>
-            API Access is <span className={classes.titleGreen}>Enabled</span>
+            {/* API Access is <span className={classes.titleGreen}>Enabled</span> */}
+            Bittrex API Keys
           </h3>
 
           <div className={classes.address}>
@@ -402,6 +435,42 @@ const ApiKeys: React.FC<Props> = () => {
 
           <div className={classes.yourApiKeys}>
             <h4 className={classes.subTitle}>Your API keys</h4>
+
+            <div className={classes.formGroup}>
+              <FormLabel className={classes.formLabel}>Exchange</FormLabel>
+              <div className={classes.formControl}>
+                <Select
+                  className={classes.selectBox}
+                  classes={{
+                    root: classes.select,
+                    icon: classes.iconSelect,
+                    outlined: classes.outlineSelect,
+                  }}
+                  variant="outlined"
+                  value={exchange}
+                  onChange={handleChangeExchange}
+                >
+                  <MenuItem value={1}>Bittrex</MenuItem>
+                  <MenuItem value={2}>Bitstamp</MenuItem>
+                  <MenuItem value={3}>bitFlyer</MenuItem>
+                  <MenuItem value={4}>KuCoin</MenuItem>
+                  <MenuItem value={5}>Kraken</MenuItem>
+                </Select>
+                {/* <TextField
+                  classes={{
+                    root: classes.inputCustom,
+                  }}
+                  value={enabledData.clientId}
+                  variant="outlined"
+                /> */}
+                {/* <IconButton
+                  className={classes.iconRemove}
+                  onClick={() => handleClearInput("clientId")}
+                >
+                  <CloseIcon />
+                </IconButton> */}
+              </div>
+            </div>
 
             <div className={classes.formGroup}>
               <FormLabel className={classes.formLabel}>Client ID</FormLabel>
@@ -427,24 +496,25 @@ const ApiKeys: React.FC<Props> = () => {
               <div className={classes.formControl}>
                 <TextField
                   classes={{
-                    root: classes.inputCustomCopy,
+                    root: classes.inputCustom,
+                    // root: classes.inputCustomCopy,
                   }}
                   value={enabledData.apiKey}
                   variant="outlined"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <CopyToClipboard
-                          text={enabledData.apiKey}
-                          onCopy={() => setCopied(true)}
-                        >
-                          <Button size="small">
-                            {copied ? "copied" : "copy"}
-                          </Button>
-                        </CopyToClipboard>
-                      </InputAdornment>
-                    ),
-                  }}
+                  // InputProps={{
+                  //   endAdornment: (
+                  //     <InputAdornment position="end">
+                  //       <CopyToClipboard
+                  //         text={enabledData.apiKey}
+                  //         onCopy={() => setCopied(true)}
+                  //       >
+                  //         <Button size="small">
+                  //           {copied ? "copied" : "copy"}
+                  //         </Button>
+                  //       </CopyToClipboard>
+                  //     </InputAdornment>
+                  //   ),
+                  // }}
                 />
                 <IconButton
                   className={classes.iconRemove}

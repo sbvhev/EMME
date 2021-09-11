@@ -13,7 +13,7 @@ import {
 // icons
 
 // components
-import { SelectCountry, Switch } from "components";
+import { SelectCurrency, Switch } from "components";
 
 interface Props {
   title?: string;
@@ -128,7 +128,7 @@ const ProfileInfo: React.FC<Props> = () => {
           />
         </div>
 
-        <SelectCountry value={1} />
+        <SelectCurrency value={1} />
       </div>
 
       <div>

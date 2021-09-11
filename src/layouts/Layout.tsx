@@ -13,11 +13,12 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import WbSunnyIcon from "@material-ui/icons/WbSunny";
-import SettingsIcon from "@material-ui/icons/Settings";
+// import SettingsIcon from "@material-ui/icons/Settings";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
-import AddIcon from "@material-ui/icons/Add";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import Brightness2Icon from "@material-ui/icons/Brightness2";
+// import AddIcon from "@material-ui/icons/Add";
+// import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
 import {
   AppBar,
@@ -32,8 +33,10 @@ import {
 } from "@material-ui/core";
 
 import { Logo, Switch } from "components";
+import { BrightnessIcon, UserIcon, SettingIcon, LogoutIcon } from "icons";
 import BellIcon from "assets/icons/bell.svg";
 import UserImg from "assets/images/user.png";
+import BittrexImg from "assets/icons/bittrex.svg";
 import FbIcon from "assets/icons/facebook.svg";
 import TwIcon from "assets/icons/twitter.svg";
 
@@ -51,7 +54,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     appBar: {
       background: "#141416",
-      padding: "20px 52px ",
+      padding: "17px 0 16px",
       borderBottom: "1px solid #353945",
     },
     toolbar: {
@@ -66,7 +69,11 @@ const useStyles = makeStyles((theme: Theme) =>
         display: "block",
       },
     },
+    leftBar: {
+      marginLeft: "24px",
+    },
     search: {
+      background: "#141416",
       position: "relative",
       borderRadius: theme.shape.borderRadius,
       backgroundColor: alpha(theme.palette.common.white, 0.15),
@@ -107,6 +114,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "none",
       [theme.breakpoints.up("md")]: {
         display: "flex",
+        alignItems: "center",
       },
     },
     sectionMobile: {
@@ -136,8 +144,9 @@ const useStyles = makeStyles((theme: Theme) =>
       lineHeight: "16px",
       margin: 0,
       width: "auto",
-      padding: "12px 40px",
-      borderLeft: "1px solid #353945",
+      padding: "12px 16px",
+      marginRight: "24px",
+      // borderLeft: "1px solid #353945",
     },
     menuOrder: {
       padding: 16,
@@ -148,6 +157,18 @@ const useStyles = makeStyles((theme: Theme) =>
       borderRadius: "12px",
       border: "none",
       boxShadow: "0px 16px 64px -48px rgba(31, 47, 70, 0.4)",
+      top: "80px !important",
+    },
+    btnWallet: {
+      fontSize: "12px",
+      lineHeight: "16px",
+      fontWeight: "bold",
+      color: theme.palette.secondary.main,
+      padding: "12px 16px",
+      margin: "0 24px",
+      border: "2px solid #353945",
+      borderRadius: "90px",
+      height: "40px",
     },
     menuItemCustom: {
       padding: "15px 5px",
@@ -200,6 +221,7 @@ const useStyles = makeStyles((theme: Theme) =>
     profileIcon: {
       fontSize: "16px",
       color: "#777E91",
+      marginTop: "5px",
     },
     switchMode: {
       marginLeft: "auto",
@@ -239,6 +261,25 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     socialIcon: {
       width: "100%",
+    },
+    viewBittrex: {
+      width: "194px",
+      padding: " 6px 24px",
+      borderLeft: "1px solid #353945",
+      borderRight: "1px solid #353945",
+      background: "#141416",
+      margin: 0,
+    },
+    img: {
+      width: "100%",
+    },
+    btnProfile: {
+      margin: "0",
+      padding: 0,
+    },
+    btnModeTheme: {
+      margin: "0 24px 0 0",
+      padding: 0,
     },
   })
 );
@@ -370,8 +411,11 @@ const Layout: React.FC<Props> = ({ children }) => {
           <Typography className={classes.title} variant="h6" noWrap>
             <Logo />
           </Typography>
-          <div className={classes.search}>
-            <Button
+          <div className={classes.leftBar}>
+            <p className={classes.viewBittrex}>
+              <img className={classes.img} alt="" src={BittrexImg} />
+            </p>
+            {/* <Button
               className={classes.btnDropdown1}
               endIcon={<KeyboardArrowDownIcon />}
             >
@@ -382,10 +426,17 @@ const Layout: React.FC<Props> = ({ children }) => {
               endIcon={<KeyboardArrowDownIcon />}
             >
               BTC/USD
-            </Button>
+            </Button> */}
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
+            <Button
+              className={classes.btnDropdown2}
+              endIcon={<KeyboardArrowDownIcon />}
+            >
+              BTC/EM.ME
+            </Button>
+
             <IconButton aria-label="show 17 new notifications" color="inherit">
               <Badge
                 classes={{
@@ -399,7 +450,11 @@ const Layout: React.FC<Props> = ({ children }) => {
               </Badge>
             </IconButton>
 
-            <Button
+            <Button classes={{ root: classes.btnWallet }} variant="outlined">
+              Wallet
+            </Button>
+
+            {/* <Button
               className={classes.placeOrder}
               variant="contained"
               color="primary"
@@ -407,7 +462,18 @@ const Layout: React.FC<Props> = ({ children }) => {
               onClick={handleOpenMenuOrder}
             >
               Place Order
-            </Button>
+            </Button> */}
+
+            <IconButton
+              color="inherit"
+              classes={{ root: classes.btnModeTheme }}
+            >
+              {darkMode ? (
+                <BrightnessIcon width={24} />
+              ) : (
+                <Brightness2Icon style={{ fontSize: "24px" }} />
+              )}
+            </IconButton>
 
             <IconButton
               edge="end"
@@ -416,11 +482,12 @@ const Layout: React.FC<Props> = ({ children }) => {
               aria-haspopup="true"
               onClick={handleOpenMenuProfile}
               color="inherit"
+              classes={{ root: classes.btnProfile }}
             >
               <img alt="" src={UserImg} />
             </IconButton>
 
-            <Menu
+            {/* <Menu
               id="menuOrder"
               anchorEl={anchorElOrder}
               keepMounted
@@ -455,7 +522,7 @@ const Layout: React.FC<Props> = ({ children }) => {
                   <ChevronRightIcon className={classes.iconMenuRight} />
                 </div>
               </MenuItem>
-            </Menu>
+            </Menu> */}
 
             <Menu
               id="menuProfile"
@@ -473,8 +540,8 @@ const Layout: React.FC<Props> = ({ children }) => {
                 }}
                 onClick={() => handleSelectMenuProfile("profile")}
               >
-                <div className={classes.menuItemOrder}>
-                  <PermIdentityIcon className={classes.profileIcon} />
+                <div className={classes.menuItemProfile}>
+                  <UserIcon width={16} className={classes.profileIcon} />
 
                   <div className={classes.menuItemProfileText}>
                     <h5 className={classes.profileTitle}>Profile</h5>
@@ -491,8 +558,8 @@ const Layout: React.FC<Props> = ({ children }) => {
                 }}
                 onClick={() => handleSelectMenuProfile("settings")}
               >
-                <div className={classes.menuItemOrder}>
-                  <SettingsIcon className={classes.profileIcon} />
+                <div className={classes.menuItemProfile}>
+                  <SettingIcon width={16} className={classes.profileIcon} />
 
                   <div className={classes.menuItemProfileText}>
                     <h5 className={classes.profileTitle}>Settings</h5>
@@ -509,8 +576,8 @@ const Layout: React.FC<Props> = ({ children }) => {
                 }}
                 onClick={() => handleSelectMenuProfile("darkMode")}
               >
-                <div className={classes.menuItemOrder}>
-                  <WbSunnyIcon className={classes.profileIcon} />
+                <div className={classes.menuItemProfile}>
+                  <BrightnessIcon width={16} className={classes.profileIcon} />
 
                   <div className={classes.menuItemProfileText}>
                     <h5 className={classes.profileTitle}>
@@ -539,8 +606,8 @@ const Layout: React.FC<Props> = ({ children }) => {
                 }}
                 onClick={() => handleSelectMenuProfile("logout")}
               >
-                <div className={classes.menuItemOrder}>
-                  <ExitToAppIcon className={classes.profileIcon} />
+                <div className={classes.menuItemProfile}>
+                  <LogoutIcon width={16} className={classes.profileIcon} />
 
                   <div className={classes.menuItemProfileText}>
                     <h5 className={classes.profileTitle}>Log out</h5>
