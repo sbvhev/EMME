@@ -6,7 +6,6 @@ import { CssBaseline } from '@material-ui/core';
 import { store } from './stores/store';
 import AlertState from 'context/alert/AlertState';
 
-import { LoginPage, SignupPage, HomePage, ProfilePage } from "./pages";
 import ThemeSwitcher, { ThemeType } from 'material/ThemeSwitcher';
 import Alerts from 'material/shared/components/Alerts';
 import Routes from 'routing/Routes';

@@ -11,10 +11,7 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
-import PermIdentityIcon from "@material-ui/icons/PermIdentity";
-import WbSunnyIcon from "@material-ui/icons/WbSunny";
 // import SettingsIcon from "@material-ui/icons/Settings";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import Brightness2Icon from "@material-ui/icons/Brightness2";
 // import AddIcon from "@material-ui/icons/Add";
@@ -293,9 +290,6 @@ const Layout: React.FC<Props> = ({ children }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [anchorElProfile, setAnchorElProfile] =
     React.useState<null | HTMLElement>(null);
-  const [anchorElOrder, setAnchorElOrder] = React.useState<null | HTMLElement>(
-    null
-  );
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
   const [darkMode, setDarkMode] = React.useState(true);
@@ -328,16 +322,8 @@ const Layout: React.FC<Props> = ({ children }) => {
     setAnchorElProfile(null);
   };
 
-  const handleCloseOrder = () => {
-    setAnchorElOrder(null);
-  };
-
   const handleOpenMenuProfile = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElProfile(event.currentTarget);
-  };
-
-  const handleOpenMenuOrder = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElOrder(event.currentTarget);
   };
 
   const handleSelectMenuProfile = (name: string) => {
@@ -417,18 +403,6 @@ const Layout: React.FC<Props> = ({ children }) => {
             <p className={classes.viewBittrex}>
               <img className={classes.img} alt="" src={BittrexImg} />
             </p>
-            {/* <Button
-              className={classes.btnDropdown1}
-              endIcon={<KeyboardArrowDownIcon />}
-            >
-              Bittrex
-            </Button>
-            <Button
-              className={classes.btnDropdown2}
-              endIcon={<KeyboardArrowDownIcon />}
-            >
-              BTC/USD
-            </Button> */}
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
@@ -456,16 +430,6 @@ const Layout: React.FC<Props> = ({ children }) => {
               Wallet
             </Button>
 
-            {/* <Button
-              className={classes.placeOrder}
-              variant="contained"
-              color="primary"
-              endIcon={<KeyboardArrowDownIcon />}
-              onClick={handleOpenMenuOrder}
-            >
-              Place Order
-            </Button> */}
-
             <IconButton
               color="inherit"
               classes={{ root: classes.btnModeTheme }}
@@ -488,43 +452,6 @@ const Layout: React.FC<Props> = ({ children }) => {
             >
               <img alt="" src={UserImg} />
             </IconButton>
-
-            {/* <Menu
-              id="menuOrder"
-              anchorEl={anchorElOrder}
-              keepMounted
-              open={Boolean(anchorElOrder)}
-              onClose={handleCloseOrder}
-              classes={{
-                paper: classes.paperMenu,
-              }}
-            >
-              <MenuItem
-                classes={{
-                  root: classes.menuItemCustom,
-                }}
-                onClick={handleCloseOrder}
-              >
-                <div className={classes.menuItemOrder}>
-                  <AddIcon className={classes.iconMenuColor} />
-                  <p className={classes.menuItemOrderText}>Liquidity Order</p>
-                  <ChevronRightIcon className={classes.iconMenuRight} />
-                </div>
-              </MenuItem>
-              <Divider />
-              <MenuItem
-                classes={{
-                  root: classes.menuItemCustom,
-                }}
-                onClick={handleCloseOrder}
-              >
-                <div className={classes.menuItemOrder}>
-                  <AddIcon className={classes.iconMenuColor} />
-                  <p className={classes.menuItemOrderText}>Asks Order</p>
-                  <ChevronRightIcon className={classes.iconMenuRight} />
-                </div>
-              </MenuItem>
-            </Menu> */}
 
             <Menu
               id="menuProfile"

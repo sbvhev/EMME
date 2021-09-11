@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import uuidAPIKey from "uuid-apikey";
-import { CopyToClipboard } from "react-copy-to-clipboard";
+// import { CopyToClipboard } from "react-copy-to-clipboard";
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
 import * as yup from "yup";
 import { useFormik } from "formik";
@@ -283,7 +283,7 @@ const ApiKeys: React.FC<Props> = () => {
   const classes = useStyles();
 
   const [status, setStatus] = useState<StatusType>("enabled");
-  const [copied, setCopied] = useState(false);
+  // const [copied, setCopied] = useState(false);
   const [exchange, setExchange] = useState("1");
   const [enabledData, setEnabledData] = useState({
     clientId: "theschinner",
@@ -296,13 +296,13 @@ const ApiKeys: React.FC<Props> = () => {
 
   const generateNewApiKey = async () => {
     const { apiKey } = await uuidAPIKey.create({ noDashes: true });
-    setCopied(false);
+    // setCopied(false);
     setEnabledData({ ...enabledData, apiKey: apiKey });
   };
 
   const handleClearInput = (name: string) => {
     if (name === "apiKey") {
-      setCopied(false);
+      // setCopied(false);
     }
     setEnabledData({ ...enabledData, [name]: "" });
   };
