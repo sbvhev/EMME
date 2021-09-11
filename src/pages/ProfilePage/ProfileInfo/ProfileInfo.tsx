@@ -58,6 +58,13 @@ const useStyles = makeStyles({
   listItem: {
     padding: "12px 0px",
   },
+  listItemText: {
+    fontSize: "14px",
+    lineHeight: "24px",
+    color: "#FCFCFD",
+    fontWeight: 500,
+    margin: 0,
+  },
   listItemSubheader: {
     padding: "16px 0 24px",
     textTransform: "uppercase",
@@ -65,6 +72,7 @@ const useStyles = makeStyles({
     fontSize: "12px",
     lineHeight: "12px",
     borderBottom: "1px solid #353945",
+    marginBottom: '12px',
   },
   mb24: {
     marginBottom: "24px",
@@ -91,6 +99,7 @@ const useStyles = makeStyles({
     color: "#FCFCFD",
     fontSize: "16px",
     lineHeight: "16px",
+    textTransform: 'none'
   },
   headerLeft: {
     marginRight: "auto",
@@ -152,6 +161,9 @@ const ProfileInfo: React.FC<Props> = () => {
             }}
           >
             <ListItemText
+              classes={{
+                root: classes.listItemText,
+              }}
               id="switch-list-label-wifi"
               primary="Deposit assets"
             />
@@ -169,6 +181,9 @@ const ProfileInfo: React.FC<Props> = () => {
             }}
           >
             <ListItemText
+              classes={{
+                root: classes.listItemText,
+              }}
               id="switch-list-label-bluetooth"
               primary="Withdraw assets"
             />
@@ -182,6 +197,9 @@ const ProfileInfo: React.FC<Props> = () => {
             }}
           >
             <ListItemText
+              classes={{
+                root: classes.listItemText,
+              }}
               id="switch-list-label-bluetooth"
               primary="Card purchases"
             />
@@ -199,6 +217,9 @@ const ProfileInfo: React.FC<Props> = () => {
             }}
           >
             <ListItemText
+              classes={{
+                root: classes.listItemText,
+              }}
               id="switch-list-label-bluetooth"
               primary="Bank deposit"
             />
@@ -230,6 +251,9 @@ const ProfileInfo: React.FC<Props> = () => {
             }}
           >
             <ListItemText
+              classes={{
+                root: classes.listItemText,
+              }}
               id="switch-list-label-wifi"
               primary="Fiat and Spot wallet"
             />
@@ -247,6 +271,9 @@ const ProfileInfo: React.FC<Props> = () => {
             }}
           >
             <ListItemText
+              classes={{
+                root: classes.listItemText,
+              }}
               id="switch-list-label-bluetooth"
               primary="Margin wallet"
             />

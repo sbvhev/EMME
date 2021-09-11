@@ -48,9 +48,11 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     grow: {
       flexGrow: 1,
+      background: "#141416",
     },
     layoutContent: {
       width: "100%",
+      background: "#141416",
     },
     appBar: {
       background: "#141416",
@@ -163,7 +165,7 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: "12px",
       lineHeight: "16px",
       fontWeight: "bold",
-      color: theme.palette.secondary.main,
+      color: "#FCFCFD",
       padding: "12px 16px",
       margin: "0 24px",
       border: "2px solid #353945",

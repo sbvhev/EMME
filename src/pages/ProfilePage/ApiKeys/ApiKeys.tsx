@@ -14,12 +14,16 @@ import {
   IconButton,
   Select,
   MenuItem,
+  InputAdornment,
+  OutlinedInput,
   // InputAdornment,
   // Snackbar,
 } from "@material-ui/core";
 import MailOutlineIconMt from "@material-ui/icons/MailOutline";
 import CloseIcon from "@material-ui/icons/Close";
 import AddIcon from "@material-ui/icons/Add";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 import { FormInput } from "components";
 import { MailOutlineIcon } from "icons";
@@ -51,6 +55,8 @@ const useStyles = makeStyles((theme: Theme) =>
       lineHeight: "16px",
       padding: "16px 24px",
       borderRadius: "90px",
+      textTransform: 'none',
+      background: '#3772FF',
     },
     smallDarkText: {
       fontSize: "12px",
@@ -62,7 +68,7 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: "bold",
       fontSize: "40px",
       lineHeight: "48px",
-      color: theme.palette.secondary.main,
+      color: "#FCFCFD",
       margin: "0 0 15px",
     },
     titleRed: {
@@ -87,10 +93,10 @@ const useStyles = makeStyles((theme: Theme) =>
       lineHeight: "24px",
       fontWeight: 500,
       margin: "0 0 0 13px",
-      color: theme.palette.secondary.main,
+      color: "#FCFCFD",
     },
     subTitle: {
-      color: theme.palette.secondary.main,
+      color: "#FCFCFD",
       fontWeight: 600,
       fontSize: "24px",
       lineHeight: "32px",
@@ -157,6 +163,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     divider: {
       marginBottom: "48px",
+      background: '#353945'
     },
     yourApiKeys: {
       marginBottom: "48px",
@@ -172,6 +179,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     formGroup: {
       marginBottom: "24px",
+      width: "100%",
     },
     formControl: {
       display: "flex",
@@ -182,7 +190,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: "14px",
       marginLeft: "17px",
       padding: "0",
-      color: '#777E91'
+      color: "#777E91",
     },
     inputCustom: {
       width: "calc(100% - 31px)",
@@ -251,6 +259,23 @@ const useStyles = makeStyles((theme: Theme) =>
 
       // paddingLeft: "0 !important",
     },
+    inputPassword: {
+      width: "100%",
+      fontSize: "14px",
+      lineHeight: "24px",
+      color: "#FCFCFD",
+      padding: "0 10px",
+      borderRadius: "12px",
+      background: "none",
+
+      "& .MuiIconButton-root": {
+        color: "#FCFCFD",
+      },
+
+      "& .MuiOutlinedInput-notchedOutline": {
+        border: "2px solid #353945",
+      },
+    },
   })
 );
 
@@ -263,6 +288,10 @@ const ApiKeys: React.FC<Props> = () => {
   const [enabledData, setEnabledData] = useState({
     clientId: "theschinner",
     apiKey: "OI8YEFOOP54SD54SDYEFO94YEFO",
+  });
+  const [values, setValues] = React.useState<any>({
+    password: "",
+    showPassword: false,
   });
 
   const generateNewApiKey = async () => {
@@ -278,9 +307,23 @@ const ApiKeys: React.FC<Props> = () => {
     setEnabledData({ ...enabledData, [name]: "" });
   };
 
-  const handleDisableApiKey = () => {
-    setStatus("disabled");
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
   };
+
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+  };
+
+  const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValues({ ...values, [event.target.name]: event.target.value });
+  };
+
+  // const handleDisableApiKey = () => {
+  //   setStatus("disabled");
+  // };
 
   const handleChangeExchange = (
     event: React.ChangeEvent<{ value: unknown }>
@@ -549,40 +592,79 @@ const ApiKeys: React.FC<Props> = () => {
               Enter your password and 2FA code to Disable the API keys
             </p>
 
-            <Grid container spacing={2}>
+            <Grid container spacing={4}>
               <Grid item md={6}>
-                <FormInput
-                  label="PASSWORD"
-                  name="apiKey"
-                  value={formik.values.apiKey}
-                  handleChange={formik.handleChange}
-                  id="apiKey"
-                  placeholder="Password"
-                  type="password"
-                  touched={formik.touched.apiKey}
-                  error={Boolean(formik.errors.apiKey)}
-                />
+                <div className={classes.formGroup}>
+                  <FormLabel className={classes.formLabel}>PASSWORD</FormLabel>
+                  <div className={classes.formControl}>
+                    <OutlinedInput
+                      classes={{
+                        root: classes.inputPassword,
+                      }}
+                      type={values.showPassword ? "text" : "password"}
+                      value={values.password}
+                      onChange={handleChangePassword}
+                      endAdornment={
+                        <InputAdornment position="end">
+                          <IconButton
+                            // aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            edge="end"
+                          >
+                            {values.showPassword ? (
+                              <Visibility />
+                            ) : (
+                              <VisibilityOff />
+                            )}
+                          </IconButton>
+                        </InputAdornment>
+                      }
+                      labelWidth={70}
+                    />
+                  </div>
+                </div>
               </Grid>
               <Grid item md={6}>
-                <FormInput
-                  label="PASSWORD"
-                  name="apiKey"
-                  value={formik.values.apiKey}
-                  handleChange={formik.handleChange}
-                  id="apiKey"
-                  placeholder="Password"
-                  type="password"
-                  touched={formik.touched.apiKey}
-                  error={Boolean(formik.errors.apiKey)}
-                />
+                <div className={classes.formGroup}>
+                  <FormLabel className={classes.formLabel}>PASSWORD</FormLabel>
+                  <div className={classes.formControl}>
+                    <OutlinedInput
+                      classes={{
+                        root: classes.inputPassword,
+                      }}
+                      type={values.showPassword ? "text" : "password"}
+                      value={values.password}
+                      onChange={handleChangePassword}
+                      endAdornment={
+                        <InputAdornment position="end">
+                          <IconButton
+                            // aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            edge="end"
+                          >
+                            {values.showPassword ? (
+                              <Visibility />
+                            ) : (
+                              <VisibilityOff />
+                            )}
+                          </IconButton>
+                        </InputAdornment>
+                      }
+                      labelWidth={70}
+                    />
+                  </div>
+                </div>
               </Grid>
             </Grid>
 
             <Button
               type="submit"
               color="primary"
+              variant="contained"
               className={classes.button}
-              onClick={handleDisableApiKey}
+              // onClick={handleDisableApiKey}
             >
               Disable API keys
             </Button>
