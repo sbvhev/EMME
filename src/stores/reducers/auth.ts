@@ -1,38 +1,38 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { API_URL } from "config/index";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-import type { RootState } from "../store";
+import { API_URL } from 'config/index';
+
+import type { RootState } from '../store';
+
+import { SignupFormData } from 'pages/SignupPage/SignupForm';
+import { LoginFormData } from 'pages/LoginPage/LoginForm';
 
 export const fetchCreateUser = createAsyncThunk(
-  "auth/create-user",
-  async (options: object, { rejectWithValue }) => {
+  'auth/create-user',
+  async (
+    options: Pick<SignupFormData, 'email' | 'firstName' | 'lastName' | 'password'>,
+    { rejectWithValue }
+  ) => {
     try {
-      const response = await axios.post(`${API_URL}users`, options);
+      const response = await axios.post(`${API_URL}/users`, options);
       return response.data;
     } catch (error: any) {
-      console.log("response: ", error.response.data);
+      console.log('error response: ', error.response.data);
       return rejectWithValue(error.response.data);
     }
   }
 );
 
-type AddUser = {
-  email: string;
-  password: string;
-};
 export const fetchLoginUser = createAsyncThunk(
-  "auth/login",
-  async (options: AddUser, { rejectWithValue }) => {
+  'auth/login',
+  async ({ email, password }: LoginFormData, { rejectWithValue }) => {
     try {
-      const username = options.email;
-      const password = options.password;
+      const username = email;
 
-      const token = Buffer.from(`${username}:${password}`, "utf8").toString(
-        "base64"
-      );
+      const token = btoa(`${username}:${password}`);
       const response = await axios.post(
-        `${API_URL}users/login`,
+        `${API_URL}/users/login`,
         {},
         {
           headers: {
@@ -42,10 +42,8 @@ export const fetchLoginUser = createAsyncThunk(
       );
       return response.data;
     } catch (error: any) {
-      console.log("response: ", error.response.data);
-      return rejectWithValue(
-        error.response.data || { message: "Username or password incorrect." }
-      );
+      console.log('response: ', error.response.data);
+      return rejectWithValue(error.response.data || { message: 'Username or password incorrect.' });
     }
   }
 );
@@ -67,7 +65,7 @@ const initialState: Props = {
 };
 
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState: initialState,
   reducers: {
     resetData: (state) => {
@@ -75,6 +73,9 @@ const authSlice = createSlice({
       state.isRegister = false;
       state.isLogin = false;
       state.user = null;
+    },
+    resetMessage: (state) => {
+      state.errors = null;
     },
   },
   extraReducers: (builder) => {
@@ -113,6 +114,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { resetData } = authSlice.actions;
+export const { resetData, resetMessage } = authSlice.actions;
 export const authSelector = (state: RootState) => state.auth;
 export default authSlice.reducer;
