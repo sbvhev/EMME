@@ -1,32 +1,48 @@
-import React, { Suspense } from "react";
-import { BrowserRouter, Switch, Route, useLocation } from "react-router-dom";
-import { Provider as StateProvider } from "react-redux";
-import {
-  ThemeProvider as MuiThemeProvider,
-  CssBaseline,
-} from "@material-ui/core";
+import { ReactNode, Suspense, useEffect, useRef, useState } from 'react';
+import { BrowserRouter, Switch } from 'react-router-dom';
+import { Provider as StateProvider } from 'react-redux';
+import { CssBaseline } from '@material-ui/core';
 
-import { darkTheme } from "./theme";
-import { store } from "./stores/store";
+import { store } from './stores/store';
+import AlertState from 'context/alert/AlertState';
 
 import { LoginPage, SignupPage, HomePage, ProfilePage } from "./pages";
+import ThemeSwitcher, { ThemeType } from 'material/ThemeSwitcher';
+import Alerts from 'material/shared/components/Alerts';
+import Routes from 'routing/Routes';
 
-const StateUpdaters: React.FC = () => {
+const StateUpdaters = () => {
   return <></>;
 };
 
-const ThemeProvider: React.FC = ({ children }) => {
-  const location = useLocation();
-  let theme = darkTheme;
+interface ThemeProviderProps {
+  children: ReactNode;
+}
 
-  if (location.pathname.replace("/", "") === "") {
-    theme = darkTheme;
-  }
+const ThemeProvider = ({ children }: ThemeProviderProps) => {
+  const darkModeMediaQuery = useRef(window.matchMedia('(prefers-color-scheme: dark)'));
+  const [themeCfg, changeThemeCfg] = useState<ThemeType>(ThemeType.lightTheme);
+  // const [themeCfg, changeThemeCfg] = useState<ThemeType>(
+  //   darkModeMediaQuery.current?.matches ? ThemeType.darkTheme : ThemeType.lightTheme
+  // );
 
-  return <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>;
+  useEffect(() => {
+    const setThemeFromMediaQuery = (e: MediaQueryListEvent) => {
+      changeThemeCfg(e.matches ? ThemeType.darkTheme : ThemeType.lightTheme);
+    };
+    const mediaQuery = darkModeMediaQuery.current;
+
+    mediaQuery?.addEventListener('change', setThemeFromMediaQuery);
+    return () => {
+      mediaQuery?.removeEventListener('change', setThemeFromMediaQuery);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return <ThemeSwitcher themeCfg={themeCfg!}>{children}</ThemeSwitcher>;
 };
 
-const Providers: React.FC = ({ children }) => {
+const App = () => {
   return (
     <BrowserRouter>
       <Suspense fallback={null}>
@@ -35,24 +51,16 @@ const Providers: React.FC = ({ children }) => {
 
           <ThemeProvider>
             <CssBaseline />
-            {children}
+            <AlertState>
+              <Switch>
+                <Routes />
+              </Switch>
+              <Alerts />
+            </AlertState>
           </ThemeProvider>
         </StateProvider>
       </Suspense>
     </BrowserRouter>
-  );
-};
-
-const App: React.FC = () => {
-  return (
-    <Providers>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/profile" component={ProfilePage} />
-        <Route exact path="/signup" component={SignupPage} />
-        <Route exact path="/login" component={LoginPage} />
-      </Switch>
-    </Providers>
   );
 };
 

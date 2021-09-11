@@ -1,16 +1,16 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { API_URL } from "config/index";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { API_URL } from 'config/index';
 
 export const fetchCreateUser = createAsyncThunk(
-  "auth/create-user",
+  'auth/create-user',
   async (data, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${API_URL}users`, data);
-      console.log("response: ", response.data);
+      const response = await axios.post(`${API_URL}/users`, data);
+      console.log('response: ', response.data);
       return response.data;
     } catch (error) {
-      console.log("error: ", error);
+      console.log('error: ', error);
       return error;
     }
   }
@@ -31,7 +31,7 @@ const initialState: Props = {
 };
 
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState: initialState,
   reducers: {},
   extraReducers: (builder) => {
