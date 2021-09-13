@@ -1,11 +1,11 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import { save, load } from "redux-localstorage-simple";
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { save, load } from 'redux-localstorage-simple';
 
-import { updateVersion } from "./user/actions";
-import user from "./user/reducer";
-import auth from "./auth/reducer";
+import { updateVersion } from './user/actions';
+import user from './user/reducer';
+import auth from './auth/reducer';
 
-const PERSISTED_KEYS: string[] = ["user", "auth"];
+const PERSISTED_KEYS: string[] = ['user', 'auth'];
 
 const store = configureStore({
   reducer: {

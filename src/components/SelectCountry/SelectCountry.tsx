@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react/no-array-index-key */
+import React, { useState } from 'react';
 
-import { makeStyles } from "@material-ui/core/styles";
-import { Button, Menu, MenuItem } from "@material-ui/core";
-import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import { makeStyles } from '@material-ui/core/styles';
+import { Button, Menu, MenuItem } from '@material-ui/core';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 
-import USDIcon from "assets/icons/usd.svg";
-import EURIcon from "assets/icons/eur.svg";
+import USDIcon from 'assets/icons/usd.svg';
+import EURIcon from 'assets/icons/eur.svg';
 
 interface Props {
   value: string | any;
@@ -20,68 +22,66 @@ const currencyList = [
   {
     id: 1,
     flag: USDIcon,
-    name: "USD",
+    name: 'USD',
   },
   {
     id: 2,
     flag: EURIcon,
-    name: "EUR",
+    name: 'EUR',
   },
 ];
 
 const useStyles = makeStyles({
   root: {
-    width: "auto",
+    width: 'auto',
     // minWidth: '200px',
   },
   button: {
-    background: "#23262F",
-    borderRadius: "48px",
-    padding: "12px 16px",
+    background: '#23262F',
+    borderRadius: '48px',
+    padding: '12px 16px',
   },
   text: {
-    color: "#FCFCFD",
-    fontSize: "16px",
-    lineHeight: "24px",
-    textAlign: "left",
-    minWidth: "248px",
+    color: '#FCFCFD',
+    fontSize: '16px',
+    lineHeight: '24px',
+    textAlign: 'left',
+    minWidth: '248px',
   },
   label: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-start",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
   },
   endIcon: {
-    marginLeft: "auto",
+    marginLeft: 'auto',
   },
   paper: {
-    minWidth: "248px",
+    minWidth: '248px',
   },
   list: {
-    maxHeight: "300px",
-    overflow: "auto",
+    maxHeight: '300px',
+    overflow: 'auto',
   },
   flag: {
-    width: "16px",
-    marginRight: "12px",
+    width: '16px',
+    marginRight: '12px',
   },
   menuItem: {
-    fontSize: "16px",
-    lineHeight: "24px",
-    color: "#FCFCFD",
-    width: "100%",
-    display: "flex",
-    alignItems: "center",
+    fontSize: '16px',
+    lineHeight: '24px',
+    color: '#FCFCFD',
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
   },
 });
 
-const SelectCountry: React.FC<Props> = ({ value }) => {
+const SelectCountry = ({ value }: Props) => {
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [selected, setSelected] = useState<null | CurrencyType>(
-    currencyList[0]
-  );
+  const [selected, setSelected] = useState<null | CurrencyType>(currencyList[0]);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -114,7 +114,7 @@ const SelectCountry: React.FC<Props> = ({ value }) => {
             {selected.name}
           </span>
         ) : (
-          "Select"
+          'Select'
         )}
       </Button>
       <Menu
@@ -136,8 +136,7 @@ const SelectCountry: React.FC<Props> = ({ value }) => {
             key={i}
             onClick={() => handleSelect(item)}
           >
-            <img className={classes.flag} width={16} alt="" src={item.flag} />{" "}
-            {item.name}
+            <img className={classes.flag} width={16} alt="" src={item.flag} /> {item.name}
           </MenuItem>
         ))}
       </Menu>

@@ -1,17 +1,13 @@
-import React from "react";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+/* eslint-disable react/prop-types */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React from 'react';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
-import {
-  List,
-  ListItemText,
-  ListItem,
-  ListItemIcon,
-  Divider,
-} from "@material-ui/core";
-import PermIdentityIcon from "@material-ui/icons/PermIdentity";
-import KeyboardIcon from "@material-ui/icons/Keyboard";
-import ComputerIcon from "@material-ui/icons/Computer";
-import LockIcon from "@material-ui/icons/Lock";
+import { List, ListItemText, ListItem, ListItemIcon, Divider } from '@material-ui/core';
+import PermIdentityIcon from '@material-ui/icons/PermIdentity';
+import KeyboardIcon from '@material-ui/icons/Keyboard';
+import ComputerIcon from '@material-ui/icons/Computer';
+import LockIcon from '@material-ui/icons/Lock';
 
 interface Props {
   active?: number;
@@ -20,7 +16,7 @@ interface Props {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: "100%",
+      width: '100%',
       maxWidth: 360,
       backgroundColor: theme.palette.background.paper,
     },
@@ -28,18 +24,18 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingLeft: theme.spacing(4),
     },
     menuText: {
-      color: "#777E91",
-      fontSize: "14px",
-      lineHeight: "16px",
+      color: '#777E91',
+      fontSize: '14px',
+      lineHeight: '16px',
     },
     icon: {
-      fontSize: "16px",
-      minWidth: "auto",
-      marginRight: "8px",
-      color: "#777E91",
+      fontSize: '16px',
+      minWidth: 'auto',
+      marginRight: '8px',
+      color: '#777E91',
     },
     listItem: {
-      padding: "12px 0",
+      padding: '12px 0',
       margin: 0,
     },
   })
@@ -50,11 +46,7 @@ const SideBar: React.FC<Props> = ({ active }) => {
 
   return (
     <div>
-      <List
-        component="nav"
-        aria-labelledby="nested-list-subheader"
-        className={classes.root}
-      >
+      <List component="nav" aria-labelledby="nested-list-subheader" className={classes.root}>
         <ListItem
           classes={{
             root: classes.listItem,
@@ -101,10 +93,7 @@ const SideBar: React.FC<Props> = ({ active }) => {
           >
             <ComputerIcon />
           </ListItemIcon>
-          <ListItemText
-            className={classes.menuText}
-            primary="Sessions & login history"
-          />
+          <ListItemText className={classes.menuText} primary="Sessions & login history" />
         </ListItem>
 
         <ListItem
@@ -120,10 +109,7 @@ const SideBar: React.FC<Props> = ({ active }) => {
           >
             <LockIcon />
           </ListItemIcon>
-          <ListItemText
-            className={classes.menuText}
-            primary="Change password"
-          />
+          <ListItemText className={classes.menuText} primary="Change password" />
         </ListItem>
       </List>
     </div>

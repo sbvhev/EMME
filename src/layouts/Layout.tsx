@@ -1,22 +1,17 @@
-import React, { ReactNode } from "react";
-import {
-  alpha,
-  makeStyles,
-  Theme,
-  createStyles,
-} from "@material-ui/core/styles";
+import React, { ReactNode } from 'react';
+import { alpha, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import MailIcon from "@material-ui/icons/Mail";
-import NotificationsIcon from "@material-ui/icons/Notifications";
-import MoreIcon from "@material-ui/icons/MoreVert";
-import PermIdentityIcon from "@material-ui/icons/PermIdentity";
-import WbSunnyIcon from "@material-ui/icons/WbSunny";
-import SettingsIcon from "@material-ui/icons/Settings";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
-import AddIcon from "@material-ui/icons/Add";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MailIcon from '@material-ui/icons/Mail';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import MoreIcon from '@material-ui/icons/MoreVert';
+import PermIdentityIcon from '@material-ui/icons/PermIdentity';
+import WbSunnyIcon from '@material-ui/icons/WbSunny';
+import SettingsIcon from '@material-ui/icons/Settings';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import AddIcon from '@material-ui/icons/Add';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 import {
   AppBar,
@@ -29,13 +24,13 @@ import {
   Divider,
   Button,
   Switch,
-} from "@material-ui/core";
+} from '@material-ui/core';
 
-import Logo from "components/Logo";
-import BellIcon from "assets/icons/bell.svg";
-import UserImg from "assets/images/user.png";
-import FbIcon from "assets/icons/facebook.svg";
-import TwIcon from "assets/icons/twitter.svg";
+import Logo from 'components/Logo';
+import BellIcon from 'assets/icons/bell.svg';
+import UserImg from 'assets/images/user.png';
+import FbIcon from 'assets/icons/facebook.svg';
+import TwIcon from 'assets/icons/twitter.svg';
 
 interface Props {
   children: ReactNode | any;
@@ -47,12 +42,12 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
     },
     layoutContent: {
-      width: "100%",
+      width: '100%',
     },
     appBar: {
-      background: "#141416",
-      padding: "20px 52px ",
-      borderBottom: "1px solid #353945",
+      background: '#141416',
+      padding: '20px 52px ',
+      borderBottom: '1px solid #353945',
     },
     toolbar: {
       minHeight: 40,
@@ -61,198 +56,194 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(2),
     },
     title: {
-      display: "none",
-      [theme.breakpoints.up("sm")]: {
-        display: "block",
+      display: 'none',
+      [theme.breakpoints.up('sm')]: {
+        display: 'block',
       },
     },
     search: {
-      position: "relative",
+      position: 'relative',
       borderRadius: theme.shape.borderRadius,
       backgroundColor: alpha(theme.palette.common.white, 0.15),
-      "&:hover": {
+      '&:hover': {
         backgroundColor: alpha(theme.palette.common.white, 0.25),
       },
       marginRight: theme.spacing(2),
       marginLeft: 0,
-      width: "100%",
-      [theme.breakpoints.up("sm")]: {
+      width: '100%',
+      [theme.breakpoints.up('sm')]: {
         marginLeft: theme.spacing(3),
-        width: "auto",
+        width: 'auto',
       },
     },
     searchIcon: {
       padding: theme.spacing(0, 2),
-      height: "100%",
-      position: "absolute",
-      pointerEvents: "none",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
+      height: '100%',
+      position: 'absolute',
+      pointerEvents: 'none',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     inputRoot: {
-      color: "inherit",
+      color: 'inherit',
     },
     inputInput: {
       padding: theme.spacing(1, 1, 1, 0),
       // vertical padding + font size from searchIcon
       paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-      transition: theme.transitions.create("width"),
-      width: "100%",
-      [theme.breakpoints.up("md")]: {
-        width: "20ch",
+      transition: theme.transitions.create('width'),
+      width: '100%',
+      [theme.breakpoints.up('md')]: {
+        width: '20ch',
       },
     },
     sectionDesktop: {
-      display: "none",
-      [theme.breakpoints.up("md")]: {
-        display: "flex",
+      display: 'none',
+      [theme.breakpoints.up('md')]: {
+        display: 'flex',
       },
     },
     sectionMobile: {
-      display: "flex",
-      [theme.breakpoints.up("md")]: {
-        display: "none",
+      display: 'flex',
+      [theme.breakpoints.up('md')]: {
+        display: 'none',
       },
     },
     btnDropdown1: {
-      background: "#141416",
+      background: '#141416',
       borderRadius: 0,
-      border: "none",
-      color: "#777E91",
+      border: 'none',
+      color: '#777E91',
       fontSize: 14,
-      lineHeight: "16px",
+      lineHeight: '16px',
       margin: 0,
-      width: "auto",
-      padding: "12px 40px",
-      borderLeft: "1px solid #353945",
+      width: 'auto',
+      padding: '12px 40px',
+      borderLeft: '1px solid #353945',
     },
     btnDropdown2: {
-      background: "#141416",
+      background: '#141416',
       borderRadius: 0,
-      border: "none",
-      color: "#FCFCFD",
+      border: 'none',
+      color: '#FCFCFD',
       fontSize: 14,
-      lineHeight: "16px",
+      lineHeight: '16px',
       margin: 0,
-      width: "auto",
-      padding: "12px 40px",
-      borderLeft: "1px solid #353945",
+      width: 'auto',
+      padding: '12px 40px',
+      borderLeft: '1px solid #353945',
     },
     menuOrder: {
       padding: 16,
     },
     paperMenu: {
-      padding: "0 16px",
-      background: "#23262F",
-      borderRadius: "12px",
-      border: "none",
-      boxShadow: "0px 16px 64px -48px rgba(31, 47, 70, 0.4)",
+      padding: '0 16px',
+      background: '#23262F',
+      borderRadius: '12px',
+      border: 'none',
+      boxShadow: '0px 16px 64px -48px rgba(31, 47, 70, 0.4)',
     },
     menuItemCustom: {
-      padding: "15px 5px",
+      padding: '15px 5px',
     },
     menuItemOrder: {
-      display: "inline-flex",
-      alignItems: "center",
-      width: "100%",
+      display: 'inline-flex',
+      alignItems: 'center',
+      width: '100%',
     },
     menuItemProfile: {
-      display: "inline-flex",
-      alignItems: "flex-start",
-      width: "100%",
+      display: 'inline-flex',
+      alignItems: 'flex-start',
+      width: '100%',
     },
     menuItemOrderText: {
-      margin: "0 10px",
+      margin: '0 10px',
       fontSize: 10,
-      lineHeight: "16px",
-      color: "#777E91",
+      lineHeight: '16px',
+      color: '#777E91',
     },
     iconMenuColor: {
-      color: "#777E91",
-      fontSize: "14px",
+      color: '#777E91',
+      fontSize: '14px',
     },
     iconMenuRight: {
-      marginLeft: "auto",
-      fontSize: "12px",
-      color: "#777E91",
+      marginLeft: 'auto',
+      fontSize: '12px',
+      color: '#777E91',
     },
     menuItemProfileText: {
-      marginLeft: "10px",
-      minWidth: "196px",
+      marginLeft: '10px',
+      minWidth: '196px',
     },
     profileTitle: {
-      margin: "0px",
-      fontSize: "14px",
-      lineHeight: "16px",
-      color: "#E6E8EC",
-      fontWeight: "bold",
-      display: "inline-flex",
-      alignItems: "center",
-      width: "100%",
+      margin: '0px',
+      fontSize: '14px',
+      lineHeight: '16px',
+      color: '#E6E8EC',
+      fontWeight: 'bold',
+      display: 'inline-flex',
+      alignItems: 'center',
+      width: '100%',
     },
     profileSubText: {
-      color: "#777E91",
-      fontSize: "10px",
-      lineHeight: "16px",
-      margin: "4px 0 0",
+      color: '#777E91',
+      fontSize: '10px',
+      lineHeight: '16px',
+      margin: '4px 0 0',
     },
     profileIcon: {
-      fontSize: "16px",
-      color: "#777E91",
+      fontSize: '16px',
+      color: '#777E91',
     },
     switchMode: {
-      marginLeft: "auto",
+      marginLeft: 'auto',
     },
     placeOrder: {
-      margin: "0 24px",
+      margin: '0 24px',
     },
     dotCustom: {
-      background: "#58BD7D",
+      background: '#58BD7D',
     },
     footer: {
-      width: "100%",
-      borderTop: "1px solid #353945",
-      padding: "24px 0",
+      width: '100%',
+      borderTop: '1px solid #353945',
+      padding: '24px 0',
     },
     footerContent: {
-      maxWidth: "1120px",
-      margin: "0 auto",
-      display: "flex",
-      alignItems: "center",
+      maxWidth: '1120px',
+      margin: '0 auto',
+      display: 'flex',
+      alignItems: 'center',
     },
     footerText: {
-      fontSize: "12px",
-      lineHeight: "20px",
-      margin: "0",
-      color: "#777E91",
+      fontSize: '12px',
+      lineHeight: '20px',
+      margin: '0',
+      color: '#777E91',
     },
     social: {
-      marginLeft: "auto",
+      marginLeft: 'auto',
     },
     socialLink: {
-      display: "inline-flex",
-      alignItems: "center",
-      width: "20px",
-      height: "20px",
-      marginLeft: "25px",
+      display: 'inline-flex',
+      alignItems: 'center',
+      width: '20px',
+      height: '20px',
+      marginLeft: '25px',
     },
     socialIcon: {
-      width: "100%",
+      width: '100%',
     },
   })
 );
 
-const Layout: React.FC<Props> = ({ children }) => {
+const Layout = ({ children }: Props) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [anchorElProfile, setAnchorElProfile] =
-    React.useState<null | HTMLElement>(null);
-  const [anchorElOrder, setAnchorElOrder] = React.useState<null | HTMLElement>(
-    null
-  );
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
-    React.useState<null | HTMLElement>(null);
+  const [anchorElProfile, setAnchorElProfile] = React.useState<null | HTMLElement>(null);
+  const [anchorElOrder, setAnchorElOrder] = React.useState<null | HTMLElement>(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
   const [darkMode, setDarkMode] = React.useState(true);
 
   const isMenuOpen = Boolean(anchorEl);
@@ -295,14 +286,14 @@ const Layout: React.FC<Props> = ({ children }) => {
     setAnchorElOrder(event.currentTarget);
   };
 
-  const menuId = "primary-search-account-menu";
+  const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       id={menuId}
       keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
@@ -311,14 +302,14 @@ const Layout: React.FC<Props> = ({ children }) => {
     </Menu>
   );
 
-  const mobileMenuId = "primary-search-account-menu-mobile";
+  const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       id={mobileMenuId}
       keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
@@ -360,16 +351,10 @@ const Layout: React.FC<Props> = ({ children }) => {
             <Logo />
           </Typography>
           <div className={classes.search}>
-            <Button
-              className={classes.btnDropdown1}
-              endIcon={<KeyboardArrowDownIcon />}
-            >
+            <Button className={classes.btnDropdown1} endIcon={<KeyboardArrowDownIcon />}>
               Bittrex
             </Button>
-            <Button
-              className={classes.btnDropdown2}
-              endIcon={<KeyboardArrowDownIcon />}
-            >
+            <Button className={classes.btnDropdown2} endIcon={<KeyboardArrowDownIcon />}>
               BTC/USD
             </Button>
           </div>
@@ -467,9 +452,7 @@ const Layout: React.FC<Props> = ({ children }) => {
 
                   <div className={classes.menuItemProfileText}>
                     <h5 className={classes.profileTitle}>Profile</h5>
-                    <p className={classes.profileSubText}>
-                      Important account details
-                    </p>
+                    <p className={classes.profileSubText}>Important account details</p>
                   </div>
                 </div>
               </MenuItem>
@@ -485,9 +468,7 @@ const Layout: React.FC<Props> = ({ children }) => {
 
                   <div className={classes.menuItemProfileText}>
                     <h5 className={classes.profileTitle}>Settings</h5>
-                    <p className={classes.profileSubText}>
-                      View additional settings
-                    </p>
+                    <p className={classes.profileSubText}>View additional settings</p>
                   </div>
                 </div>
               </MenuItem>
@@ -510,12 +491,10 @@ const Layout: React.FC<Props> = ({ children }) => {
                         onChange={handleChangeMode}
                         color="primary"
                         name="checkedB"
-                        inputProps={{ "aria-label": "primary checkbox" }}
+                        inputProps={{ 'aria-label': 'primary checkbox' }}
                       />
                     </h5>
-                    <p className={classes.profileSubText}>
-                      Switch dark/light mode
-                    </p>
+                    <p className={classes.profileSubText}>Switch dark/light mode</p>
                   </div>
                 </div>
               </MenuItem>
@@ -557,9 +536,7 @@ const Layout: React.FC<Props> = ({ children }) => {
 
       <div className={classes.footer}>
         <div className={classes.footerContent}>
-          <p className={classes.footerText}>
-            Copyright © 2021 Veriblock. All rights reserved
-          </p>
+          <p className={classes.footerText}>Copyright © 2021 Veriblock. All rights reserved</p>
           <div className={classes.social}>
             <a href="/" className={classes.socialLink}>
               <img alt="" src={FbIcon} className={classes.socialIcon} />

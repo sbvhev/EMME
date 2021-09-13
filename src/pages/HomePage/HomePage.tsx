@@ -1,3 +1,5 @@
+/* eslint-disable react/destructuring-assignment */
+import React from 'react';
 import Navbar from 'material/shared/layout/Navbar';
 
 const HomePage = (props: any) => (

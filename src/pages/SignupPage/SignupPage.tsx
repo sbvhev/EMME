@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Form } from 'formik';
@@ -201,109 +202,107 @@ function SignUp() {
             lastName: lastNameError,
           },
           handleBlur,
-        }) => {
-          return (
-            <Form className={classes.form}>
-              <Box component="div" m={1}>
-                <Notifications
-                  message={<span className={classes.textMessage}>{notifyMessage}</span>}
-                  open={openNotification}
-                  onClose={handleToggleNotification}
-                  type={notifyType}
-                />
+        }) => (
+          <Form className={classes.form}>
+            <Box component="div" m={1}>
+              <Notifications
+                message={<span className={classes.textMessage}>{notifyMessage}</span>}
+                open={openNotification}
+                onClose={handleToggleNotification}
+                type={notifyType}
+              />
 
-                <h2 className={classes.formTitle}>Sign up</h2>
-                <FormInput
-                  label="EMAIL"
-                  id="email"
-                  name="email"
-                  placeholder="Email address"
-                  value={email}
-                  touched={emailTouched}
-                  error={emailError}
-                  handleBlur={handleBlur}
-                  handleChange={handleChange}
-                />
-                <FormInput
-                  label="FIRST NAME"
-                  id="firstName"
-                  name="firstName"
-                  placeholder="First Name"
-                  value={firstName}
-                  touched={firstNameTouched}
-                  error={firstNameError}
-                  handleBlur={handleBlur}
-                  handleChange={handleChange}
-                />
-                <FormInput
-                  label="Last NAME"
-                  id="lastName"
-                  name="lastName"
-                  placeholder="Last Name"
-                  value={lastName}
-                  touched={lastNameTouched}
-                  error={lastNameError}
-                  handleBlur={handleBlur}
-                  handleChange={handleChange}
-                />
-                <FormInput
-                  label="PASSWORD"
-                  id="password"
-                  name="password"
-                  placeholder="Password"
-                  type="password"
-                  value={password}
-                  touched={passwordTouched}
-                  error={passwordError}
-                  handleBlur={handleBlur}
-                  handleChange={handleChange}
-                />
-                <FormInput
-                  label="CONFIRM PASSWORD"
-                  id="re-password"
-                  name="confirmPassword"
-                  placeholder="Password"
-                  type="password"
-                  value={confirmPassword}
-                  touched={confirmPasswordTouched}
-                  error={confirmPasswordError}
-                  handleBlur={handleBlur}
-                  handleChange={handleChange}
-                />
+              <h2 className={classes.formTitle}>Sign up</h2>
+              <FormInput
+                label="EMAIL"
+                id="email"
+                name="email"
+                placeholder="Email address"
+                value={email}
+                touched={emailTouched}
+                error={emailError}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+              />
+              <FormInput
+                label="FIRST NAME"
+                id="firstName"
+                name="firstName"
+                placeholder="First Name"
+                value={firstName}
+                touched={firstNameTouched}
+                error={firstNameError}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+              />
+              <FormInput
+                label="Last NAME"
+                id="lastName"
+                name="lastName"
+                placeholder="Last Name"
+                value={lastName}
+                touched={lastNameTouched}
+                error={lastNameError}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+              />
+              <FormInput
+                label="PASSWORD"
+                id="password"
+                name="password"
+                placeholder="Password"
+                type="password"
+                value={password}
+                touched={passwordTouched}
+                error={passwordError}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+              />
+              <FormInput
+                label="CONFIRM PASSWORD"
+                id="re-password"
+                name="confirmPassword"
+                placeholder="Password"
+                type="password"
+                value={confirmPassword}
+                touched={confirmPasswordTouched}
+                error={confirmPasswordError}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+              />
 
-                <Checkbox
-                  name="accept"
-                  checked={isAccept}
-                  onChange={handleChangeAccept}
-                  label={
-                    <p className={classes.labelCheckbox}>
-                      By signing up I agree that I’m 18 years of age or older, to the{' '}
-                      <strong className={classes.labelCheckboxBold}>
-                        User Agreements, Privacy Policy, Cookie Policy, E-Sign Consent.
-                      </strong>
-                    </p>
-                  }
-                />
+              <Checkbox
+                name="accept"
+                checked={isAccept}
+                onChange={handleChangeAccept}
+                label={
+                  <p className={classes.labelCheckbox}>
+                    By signing up I agree that I’m 18 years of age or older, to the{' '}
+                    <strong className={classes.labelCheckboxBold}>
+                      User Agreements, Privacy Policy, Cookie Policy, E-Sign Consent.
+                    </strong>
+                  </p>
+                }
+              />
 
-                <Button
-                  color="primary"
-                  variant="contained"
-                  fullWidth
-                  className={classes.submit}
-                  type="submit"
-                  size="large"
-                >
-                  Sign up
-                </Button>
+              <Button
+                color="primary"
+                variant="contained"
+                fullWidth
+                className={classes.submit}
+                type="submit"
+                size="large"
+              >
+                Sign up
+              </Button>
 
-                <p className={classes.otherText}>
-                  Already have an account?
-                  <Link to="/login">Login</Link>
-                </p>
-              </Box>
-            </Form>
-          );
-        }}
+              <p className={classes.otherText}>
+                Already have an account?
+                <Link to="/login">Login</Link>
+              </p>
+            </Box>
+          </Form>
+        )}
       </Formik>
     </Grid>
   );

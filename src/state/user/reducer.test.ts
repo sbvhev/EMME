@@ -17,9 +17,7 @@ describe('swap reducer', () => {
     it('sets the lastUpdateVersionTimestamp', () => {
       const time = new Date().getTime();
       store.dispatch(updateVersion());
-      expect(
-        store.getState().lastUpdateVersionTimestamp,
-      ).toBeGreaterThanOrEqual(time);
+      expect(store.getState().lastUpdateVersionTimestamp).toBeGreaterThanOrEqual(time);
     });
   });
 });

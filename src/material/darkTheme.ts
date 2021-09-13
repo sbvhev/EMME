@@ -27,8 +27,8 @@ const dividerGreyNight = '#353945';
 const createMuiTheme = (custom: any, options?: ThemeOptions | undefined, ...args: object[]) =>
   createTheme(merge(options, custom), ...args);
 
-const darkTheme = () => {
-  return responsiveFontSizes(
+const darkTheme = () =>
+  responsiveFontSizes(
     createMuiTheme(
       {
         palette: {
@@ -125,7 +125,7 @@ const darkTheme = () => {
             root: {
               backgroundColor: primary,
               color: white,
-              "&[disabled='true']": {
+              '&[disabled="true"]': {
                 background:
                   'linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), #3772FF',
               },
@@ -179,12 +179,12 @@ const darkTheme = () => {
               },
             },
             containedSecondary: {
-              background: ``,
+              background: '',
               color: black,
               fontWeight: 500,
               boxShadow: '0px 0px 5px rgba(246, 67, 207, 0.4)',
               '&:hover': {
-                background: ``,
+                background: '',
               },
               '&:active': {
                 color: black,
@@ -308,6 +308,5 @@ const darkTheme = () => {
       themeBase
     )
   );
-};
 
 export default darkTheme;

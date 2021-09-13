@@ -9,13 +9,9 @@ export default function Updater(): null {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    const userExistingDarkMode = Number(
-      localStorage.getItem(DARK_MODE_LOCALSTORAGE_KEY),
-    );
+    const userExistingDarkMode = Number(localStorage.getItem(DARK_MODE_LOCALSTORAGE_KEY));
 
-    dispatch(
-      updateUserDarkMode({ userDarkMode: Boolean(userExistingDarkMode) }),
-    );
+    dispatch(updateUserDarkMode({ userDarkMode: Boolean(userExistingDarkMode) }));
 
     const darkHandler = (match: MediaQueryListEvent) => {
       dispatch(updateMediaDarkMode({ mediaDarkMode: match.matches }));

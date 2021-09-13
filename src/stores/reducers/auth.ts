@@ -3,10 +3,10 @@ import axios from 'axios';
 
 import { API_URL } from 'config/index';
 
-import type { RootState } from '../store';
-
 import { SignupFormData } from 'pages/SignupPage/SignupForm';
 import { LoginFormData } from 'pages/LoginPage/LoginForm';
+
+import type { RootState } from '../store';
 
 export const fetchCreateUser = createAsyncThunk(
   'auth/create-user',
@@ -66,7 +66,7 @@ const initialState: Props = {
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState: initialState,
+  initialState,
   reducers: {
     resetData: (state) => {
       state.errors = null;

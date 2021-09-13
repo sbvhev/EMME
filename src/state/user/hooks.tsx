@@ -1,8 +1,9 @@
-import { useCallback } from "react";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
+/* eslint-disable @typescript-eslint/no-shadow */
+import { useCallback } from 'react';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
-import { AppDispatch, AppState } from "state";
-import { updateUserDarkMode } from "./actions";
+import { AppDispatch, AppState } from 'state';
+import { updateUserDarkMode } from './actions';
 
 export function useIsDarkMode(): boolean {
   const { userDarkMode, mediaDarkMode } = useSelector<

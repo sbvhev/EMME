@@ -118,7 +118,7 @@ export const LoginForm = ({ onSubmit, onIsDisabled, loading }: Props) => {
               value={values.password}
               onChange={handleChange}
               onBlur={() => setFieldTouched('password')}
-              autoComplete={'current-password'}
+              autoComplete="current-password"
               required
               endAdornment={
                 <InputAdornment position="end">
@@ -162,7 +162,6 @@ export const LoginForm = ({ onSubmit, onIsDisabled, loading }: Props) => {
 };
 
 LoginForm.defaultProps = {
-  message: null,
   onIsDisabled: undefined,
 };
 

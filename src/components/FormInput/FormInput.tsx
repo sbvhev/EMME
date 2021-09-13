@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Input,
   FormHelperText,
@@ -6,40 +6,40 @@ import {
   FormControl,
   InputAdornment,
   IconButton,
-} from "@material-ui/core";
-import { withStyles, alpha, makeStyles } from "@material-ui/core/styles";
-import { Visibility, VisibilityOff } from "@material-ui/icons";
+} from '@material-ui/core';
+import { withStyles, alpha, makeStyles } from '@material-ui/core/styles';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
 
 const FormInput = withStyles((theme) => ({
   root: {
-    "label + &": {
+    'label + &': {
       marginTop: theme.spacing(3),
     },
   },
   input: {
     borderRadius: 4,
-    position: "relative",
+    position: 'relative',
     backgroundColor: theme.palette.common.white,
     borderWidth: 1,
-    borderStyle: "solid",
+    borderStyle: 'solid',
     fontSize: 14,
     height: 48,
-    padding: "10px 12px",
-    transition: theme.transitions.create(["border-color", "box-shadow"]),
-    width: "100%",
+    padding: '10px 12px',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    width: '100%',
     fontFamily: [
-      "-apple-system",
-      "BlinkMacSystemFont",
+      '-apple-system',
+      'BlinkMacSystemFont',
       '"Segoe UI"',
-      "Roboto",
+      'Roboto',
       '"Helvetica Neue"',
-      "Arial",
-      "sans-serif",
+      'Arial',
+      'sans-serif',
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
-    ].join(","),
-    "&:focus": {
+    ].join(','),
+    '&:focus': {
       boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
       borderColor: theme.palette.primary.main,
     },
@@ -54,12 +54,12 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 16,
   },
   label: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   input: {},
   form: {
     flex: 1,
-    display: "flex",
+    display: 'flex',
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
   },
@@ -82,31 +82,29 @@ interface State {
   showPassword: boolean;
 }
 
-const FormInputControl: React.FC<FormInputControlProps> = (props) => {
+const FormInputControl = ({
+  touched,
+  error,
+  value,
+  handleBlur,
+  handleChange,
+  label,
+  name,
+  id,
+  placeholder,
+  type,
+}: FormInputControlProps) => {
   const classes = useStyles();
-  const {
-    touched,
-    error,
-    value,
-    handleBlur,
-    handleChange,
-    label,
-    name,
-    id,
-    placeholder,
-    type,
-  } = props;
+
   const [values, setValues] = useState<State>({
-    showPassword: type === "password" ? false : true,
+    showPassword: type !== 'password',
   });
 
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
   };
 
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
+  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
 
@@ -123,15 +121,15 @@ const FormInputControl: React.FC<FormInputControlProps> = (props) => {
       <FormInput
         id={id}
         name={name}
-        type={values.showPassword ? "text" : "password"}
+        type={values.showPassword ? 'text' : 'password'}
         placeholder={placeholder}
         value={value}
-        disableUnderline={!touched || !Boolean(error)}
+        disableUnderline={!touched || !error}
         error={touched && Boolean(error)}
         onBlur={handleBlur}
         onChange={handleChange}
         endAdornment={
-          type !== "password" ? (
+          type !== 'password' ? (
             <></>
           ) : (
             <InputAdornment position="end">
@@ -141,18 +139,16 @@ const FormInputControl: React.FC<FormInputControlProps> = (props) => {
                 onMouseDown={handleMouseDownPassword}
               >
                 {values.showPassword ? (
-                  <Visibility style={{ fill: "#777E90" }} />
+                  <Visibility style={{ fill: '#777E90' }} />
                 ) : (
-                  <VisibilityOff style={{ fill: "#777E90" }} />
+                  <VisibilityOff style={{ fill: '#777E90' }} />
                 )}
               </IconButton>
             </InputAdornment>
           )
         }
       />
-      <FormHelperText className={classes.helperText}>
-        {touched && error}
-      </FormHelperText>
+      <FormHelperText className={classes.helperText}>{touched && error}</FormHelperText>
     </FormControl>
   );
 };

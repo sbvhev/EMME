@@ -1,50 +1,50 @@
-import React from "react";
-import { ReactComponent as DayIcon } from "assets/svg/DayIcon.svg";
-import { ReactComponent as NightIcon } from "assets/svg/NightIcon.svg";
-import { Typography, Box, useMediaQuery } from "@material-ui/core";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import React from 'react';
+import { ReactComponent as DayIcon } from 'assets/svg/DayIcon.svg';
+import { ReactComponent as NightIcon } from 'assets/svg/NightIcon.svg';
+import { Typography, Box, useMediaQuery } from '@material-ui/core';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 
-import { useDarkModeManager } from "state/user/hooks";
-import { useDeviceWidth } from "hooks";
+import { useDarkModeManager } from 'state/user/hooks';
+import { useDeviceWidth } from 'hooks';
 
-import { SwitchWithGlider } from "components";
+import { SwitchWithGlider } from 'components';
 
 const useStyles = makeStyles(({ palette }) => ({
   activeMode: {
     borderRadius: 10,
-    "& svg": {
+    '& svg': {
       marginRight: 8,
     },
-    "& svg path": {
+    '& svg path': {
       fill: palette.primary.main,
     },
-    "& .MuiTypography-root": {
+    '& .MuiTypography-root': {
       fontWeight: 700,
-      fontSize: "14px",
+      fontSize: '14px',
       color: palette.primary.main,
     },
   },
   inactiveMode: {
-    backgroundColor: "transparent",
-    cursor: "pointer",
-    "& svg": {
+    backgroundColor: 'transparent',
+    cursor: 'pointer',
+    '& svg': {
       marginRight: 8,
     },
-    "& svg path": {
+    '& svg path': {
       fill: palette.secondary.main,
     },
-    "& .MuiTypography-root": {
+    '& .MuiTypography-root': {
       fontWeight: 400,
-      fontSize: "14px",
+      fontSize: '14px',
       color: palette.secondary.main,
     },
-    "&:hover": {
-      "& svg path": {
+    '&:hover': {
+      '& svg path': {
         fill: palette.text.primary,
       },
-      "& .MuiTypography-root": {
+      '& .MuiTypography-root': {
         fontWeight: 400,
-        fontSize: "14px",
+        fontSize: '14px',
         color: palette.text.primary,
       },
     },
@@ -57,7 +57,7 @@ const ThemeSwitch: React.FC = () => {
   const theme = useTheme();
   const deviceWidth = useDeviceWidth();
   const { palette } = theme;
-  const mobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const mobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleDayClick = () => {
     setTimeout(() => {
@@ -77,8 +77,8 @@ const ThemeSwitch: React.FC = () => {
       alignItems="center"
       justifyContent="center"
       className={!darkMode ? classes.activeMode : classes.inactiveMode}
-      width={!mobile ? "80px" : deviceWidth / 2 - 16}
-      height={!mobile ? "30px" : "36px"}
+      width={!mobile ? '80px' : deviceWidth / 2 - 16}
+      height={!mobile ? '30px' : '36px'}
       onClick={handleDayClick}
     >
       <DayIcon />
@@ -89,8 +89,8 @@ const ThemeSwitch: React.FC = () => {
   const NightButton = () => (
     <Box
       display="flex"
-      width={!mobile ? "80px" : deviceWidth / 2 - 16}
-      height={!mobile ? "30px" : "36px"}
+      width={!mobile ? '80px' : deviceWidth / 2 - 16}
+      height={!mobile ? '30px' : '36px'}
       alignItems="center"
       justifyContent="center"
       className={darkMode ? classes.activeMode : classes.inactiveMode}
@@ -104,7 +104,7 @@ const ThemeSwitch: React.FC = () => {
   return (
     <Box
       display="flex"
-      padding={!mobile ? "0 6px" : "0"}
+      padding={!mobile ? '0 6px' : '0'}
       justifyContent="space-between"
       style={{ backgroundColor: palette.background.paper }}
     >

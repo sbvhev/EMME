@@ -56,7 +56,7 @@ const Navbar = (props: JSX.IntrinsicAttributes & HideOnScrollProps) => {
   const classes = useStyles();
 
   const dispatch = useAppDispatch();
-  const { user, loading } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state) => state.auth);
 
   const [anchorElNotifications, setAnchorElNotifications] = useState<null | HTMLElement>(null);
   const [anchorElProfile, setAnchorElProfile] = React.useState<null | HTMLElement>(null);
@@ -74,7 +74,6 @@ const Navbar = (props: JSX.IntrinsicAttributes & HideOnScrollProps) => {
     setAnchorElNotifications(event.currentTarget);
 
   const handleLogout = () => {
-    console.log('logout');
     dispatch(resetData());
   };
 

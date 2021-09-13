@@ -1,72 +1,72 @@
-import React from "react";
-import { useHistory, useLocation } from "react-router-dom";
-import { Box, Typography } from "@material-ui/core";
-import { useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { makeStyles } from "@material-ui/core/styles";
-import cx from "classnames";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
+import { Box, Typography } from '@material-ui/core';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import cx from 'classnames';
 
 const useStyles = makeStyles(({ palette }) => ({
   inactiveSwitch: {
-    cursor: "pointer",
-    "& svg": {
+    cursor: 'pointer',
+    '& svg': {
       marginRight: 10,
     },
-    "& svg path": {
+    '& svg path': {
       fill: palette.secondary.main,
     },
-    "& .MuiTypography-root": {
+    '& .MuiTypography-root': {
       fontWeight: 400,
-      lineHeight: "14px",
-      fontSize: "14px",
+      lineHeight: '14px',
+      fontSize: '14px',
       color: palette.secondary.main,
     },
-    "&:hover": {
-      "& svg path": {
+    '&:hover': {
+      '& svg path': {
         fill: palette.text.primary,
       },
-      "& .MuiTypography-root": {
+      '& .MuiTypography-root': {
         fontWeight: 400,
-        fontSize: "14px",
+        fontSize: '14px',
         color: palette.text.primary,
       },
     },
   },
   activeSwitch: {
-    cursor: "default",
-    "& svg path": {
+    cursor: 'default',
+    '& svg path': {
       fill: palette.primary.main,
     },
-    "& .MuiTypography-root": {
+    '& .MuiTypography-root': {
       color: palette.primary.main,
       fontWeight: 700,
     },
-    "&:hover": {
-      "& svg path": {
+    '&:hover': {
+      '& svg path': {
         fill: palette.primary.main,
       },
-      "& .MuiTypography-root": {
+      '& .MuiTypography-root': {
         color: palette.primary.main,
         fontWeight: 700,
       },
     },
   },
   disabled: {
-    cursor: "default",
+    cursor: 'default',
 
-    "& svg path": {
+    '& svg path': {
       fill: palette.text.secondary,
     },
 
-    "& .MuiTypography-root": {
+    '& .MuiTypography-root': {
       color: palette.text.secondary,
     },
 
-    "&:hover": {
-      "& svg path": {
+    '&:hover': {
+      '& svg path': {
         fill: palette.text.secondary,
       },
-      "& .MuiTypography-root": {
+      '& .MuiTypography-root': {
         color: palette.text.secondary,
       },
     },
@@ -82,19 +82,12 @@ export interface SidebarItemProps {
   activeCondition?: any;
 }
 
-const SidebarItem: React.FC<SidebarItemProps> = ({
-  title,
-  link,
-  Icon,
-  href,
-  onHide,
-  activeCondition,
-}) => {
+const SidebarItem = ({ title, link, Icon, href, onHide, activeCondition }: SidebarItemProps) => {
   const location = useLocation();
   const active = location.pathname === link;
   const classes = useStyles({ active });
   const theme = useTheme();
-  const mobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const mobile = useMediaQuery(theme.breakpoints.down('sm'));
   const history = useHistory();
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -106,7 +99,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
         }
       }
     } else {
-      window.open(link, "_blank");
+      window.open(link, '_blank');
     }
   };
 
@@ -119,12 +112,9 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
         alignItems="center"
         justifyContent="flex-start"
         paddingLeft="15px"
-        width={!mobile ? "180px" : "100%"}
+        width={!mobile ? '180px' : '100%'}
         height="47px"
-        className={cx(
-          classes.inactiveSwitch,
-          activeCondition && classes.activeSwitch
-        )}
+        className={cx(classes.inactiveSwitch, activeCondition && classes.activeSwitch)}
         onClick={handleClick}
       >
         {Icon}

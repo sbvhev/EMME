@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 import React, { ReactNode } from 'react';
 import { Theme, MuiThemeProvider } from '@material-ui/core/styles';
 

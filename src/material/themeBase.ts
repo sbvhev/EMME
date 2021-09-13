@@ -236,7 +236,7 @@ export const themeBase: ThemeOptions = {
         borderRadius: 90,
         margin: '2px',
 
-        "&[disabled='true']": {
+        '&[disabled="true"]': {
           background: 'linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), #3772FF',
         },
       },
@@ -264,7 +264,7 @@ export const themeBase: ThemeOptions = {
         width: 90,
       },
       textPrimary: {
-        border: `1px solid transparent`,
+        border: '1px solid transparent',
       },
 
       contained: {
@@ -287,11 +287,11 @@ export const themeBase: ThemeOptions = {
         },
       },
       containedSecondary: {
-        background: ``,
+        background: '',
         fontWeight: 500,
         boxShadow: '0px 0px 5px rgba(246, 67, 207, 0.4)',
         '&:hover': {
-          background: ``,
+          background: '',
         },
         '&:active': {
           background: 'none',
@@ -334,7 +334,7 @@ export const themeBase: ThemeOptions = {
           right: 40,
           width: 16,
           height: 16,
-          transform: "translate(-50%, 50%) rotate(135deg)",
+          transform: 'translate(-50%, 50%) rotate(135deg)',
           clipPath: 'polygon(-8px -8px, calc(100% + 8px) -8px, calc(100% + 8px) calc(100% + 8px))',
         },
       },
@@ -413,7 +413,7 @@ export const themeBase: ThemeOptions = {
 
         '&:before': {
           height: '50%',
-          content: "''",
+          content: '',
         },
       },
       line: {

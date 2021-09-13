@@ -22,8 +22,8 @@ export const spacing: SpacingOptions = [0, 2, 5, 10, 15, 20, 25, 30, 40, 50, 60]
 const createMuiTheme = (custom: any, options?: ThemeOptions | undefined, ...args: object[]) =>
   createTheme(merge(options, custom), ...args);
 
-const lightTheme = () => {
-  return responsiveFontSizes(
+const lightTheme = () =>
+  responsiveFontSizes(
     createMuiTheme(
       {
         palette: {
@@ -52,7 +52,7 @@ const lightTheme = () => {
             main: error,
           },
         },
-        spacing
+        spacing,
       },
       {},
       ...[
@@ -61,6 +61,5 @@ const lightTheme = () => {
       ]
     )
   );
-};
 
 export default lightTheme;

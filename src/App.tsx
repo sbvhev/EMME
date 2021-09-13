@@ -1,22 +1,21 @@
-import { ReactNode, Suspense, useEffect, useRef, useState } from 'react';
+import React, { ReactNode, Suspense, useEffect, useRef, useState } from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import { Provider as StateProvider } from 'react-redux';
 import { CssBaseline } from '@material-ui/core';
 
-import { store } from './stores/store';
 import AlertState from 'context/alert/AlertState';
 
 import ThemeSwitcher, { ThemeType } from 'material/ThemeSwitcher';
 import Alerts from 'material/shared/components/Alerts';
 import Routes from 'routing/Routes';
 
-/*** For now we can simply switch here between themes ***/
+import { store } from './stores/store';
+
+/* ** For now we can simply switch here between themes ** */
 // let selectedTheme: ThemeType = ThemeType.lightTheme;
 let selectedTheme: ThemeType = ThemeType.darkTheme;
 
-const StateUpdaters = () => {
-  return <></>;
-};
+const StateUpdaters = () => <></>;
 
 interface ThemeProviderProps {
   children: ReactNode;
@@ -49,26 +48,24 @@ const ThemeProvider = ({ children }: ThemeProviderProps) => {
   return <ThemeSwitcher themeCfg={themeCfg!}>{children}</ThemeSwitcher>;
 };
 
-const App = () => {
-  return (
-    <BrowserRouter>
-      <Suspense fallback={null}>
-        <StateProvider store={store}>
-          <StateUpdaters />
+const App = () => (
+  <BrowserRouter>
+    <Suspense fallback={null}>
+      <StateProvider store={store}>
+        <StateUpdaters />
 
-          <ThemeProvider>
-            <CssBaseline />
-            <AlertState>
-              <Switch>
-                <Routes selectedTheme={selectedTheme} />
-              </Switch>
-              <Alerts />
-            </AlertState>
-          </ThemeProvider>
-        </StateProvider>
-      </Suspense>
-    </BrowserRouter>
-  );
-};
+        <ThemeProvider>
+          <CssBaseline />
+          <AlertState>
+            <Switch>
+              <Routes selectedTheme={selectedTheme} />
+            </Switch>
+            <Alerts />
+          </AlertState>
+        </ThemeProvider>
+      </StateProvider>
+    </Suspense>
+  </BrowserRouter>
+);
 
 export default App;

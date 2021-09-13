@@ -5,8 +5,7 @@ import { createAction } from '@reduxjs/toolkit';
 export const updateVersion = createAction<void>('global/updateVersion');
 
 export const updateMediaDarkMode = createAction<{ mediaDarkMode: boolean }>(
-  'user/updateMediaDarkMode',
+  'user/updateMediaDarkMode'
 );
-export const updateUserDarkMode = createAction<{ userDarkMode: boolean }>(
-  'user/updateUserDarkMode',
-);
+export const updateUserDarkMode =
+  createAction<{ userDarkMode: boolean }>('user/updateUserDarkMode');

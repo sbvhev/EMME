@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Formik, Form } from 'formik';
@@ -168,62 +169,60 @@ function Login() {
           touched: { email: emailTouched, password: passwordTouched },
           errors: { email: emailError, password: passwordError },
           handleBlur,
-        }) => {
-          return (
-            <Form className={classes.form}>
-              <Box component="div" m={1}>
-                <Notifications
-                  message={<span className={classes.textMessage}>{notifyMessage}</span>}
-                  open={openNotification}
-                  onClose={handleToggleNotification}
-                  type={notifyType}
-                />
+        }) => (
+          <Form className={classes.form}>
+            <Box component="div" m={1}>
+              <Notifications
+                message={<span className={classes.textMessage}>{notifyMessage}</span>}
+                open={openNotification}
+                onClose={handleToggleNotification}
+                type={notifyType}
+              />
 
-                <h2 className={classes.formTitle}>Sign in to EM.ME</h2>
+              <h2 className={classes.formTitle}>Sign in to EM.ME</h2>
 
-                <FormInput
-                  label="EMAIL"
-                  id="email"
-                  name="email"
-                  placeholder="Email address"
-                  value={email}
-                  touched={emailTouched}
-                  error={emailError}
-                  type="email"
-                  handleBlur={handleBlur}
-                  handleChange={handleChange}
-                />
-                <FormInput
-                  label="PASSWORD"
-                  id="password"
-                  name="password"
-                  placeholder="Password"
-                  type="password"
-                  value={password}
-                  touched={passwordTouched}
-                  error={passwordError}
-                  handleBlur={handleBlur}
-                  handleChange={handleChange}
-                />
-                <Button
-                  color="primary"
-                  variant="contained"
-                  fullWidth
-                  className={classes.submit}
-                  type="submit"
-                  size="large"
-                  disabled={loading}
-                >
-                  Login
-                </Button>
-                <p className={classes.otherText}>
-                  Don’t have an account?
-                  <Link to="/signup">Sign up for free</Link>
-                </p>
-              </Box>
-            </Form>
-          );
-        }}
+              <FormInput
+                label="EMAIL"
+                id="email"
+                name="email"
+                placeholder="Email address"
+                value={email}
+                touched={emailTouched}
+                error={emailError}
+                type="email"
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+              />
+              <FormInput
+                label="PASSWORD"
+                id="password"
+                name="password"
+                placeholder="Password"
+                type="password"
+                value={password}
+                touched={passwordTouched}
+                error={passwordError}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+              />
+              <Button
+                color="primary"
+                variant="contained"
+                fullWidth
+                className={classes.submit}
+                type="submit"
+                size="large"
+                disabled={loading}
+              >
+                Login
+              </Button>
+              <p className={classes.otherText}>
+                Don’t have an account?
+                <Link to="/signup">Sign up for free</Link>
+              </p>
+            </Box>
+          </Form>
+        )}
       </Formik>
     </Grid>
   );

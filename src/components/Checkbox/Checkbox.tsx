@@ -1,22 +1,21 @@
-import React, { ReactNode } from "react";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
-import Checkbox, { CheckboxProps } from "@material-ui/core/Checkbox";
-
+import React, { ReactNode } from 'react';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox';
 
 const useStyles = makeStyles({
   wrapper: {
-    display: "flex",
-    alignItems: "flex-start",
+    display: 'flex',
+    alignItems: 'flex-start',
   },
 });
 
 const BlueCheckbox = withStyles({
   root: {
-    color: "#3772FF",
-    "&$checked": {
-      color: "#3772FF",
+    color: '#3772FF',
+    '&$checked': {
+      color: '#3772FF',
     },
-    marginTop: "7px",
+    marginTop: '7px',
   },
   checked: {},
 })((props: CheckboxProps) => <Checkbox {...props} />);
@@ -28,13 +27,7 @@ interface Props {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-
-const CheckboxCustom: React.FC<Props> = ({
-  name,
-  label,
-  checked,
-  onChange,
-}) => {
+const CheckboxCustom = ({ name, label, checked, onChange }: Props) => {
   const classes = useStyles();
 
   return (
@@ -45,4 +38,9 @@ const CheckboxCustom: React.FC<Props> = ({
   );
 };
 
+CheckboxCustom.defaultProps = {
+  label: undefined,
+  checked: undefined,
+  onChange: undefined,
+};
 export default CheckboxCustom;

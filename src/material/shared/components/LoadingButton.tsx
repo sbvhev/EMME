@@ -1,6 +1,7 @@
+import React from 'react';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
-import { createStyles, makeStyles } from '@material-ui/core/styles';
 
 const loadingButtonStyle = makeStyles(() =>
   createStyles({

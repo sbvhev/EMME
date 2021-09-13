@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -27,20 +28,21 @@ export interface SwitchWithGliderProps {
   verticalGlider?: boolean;
 }
 
-const SwitchWithGlider: React.FC<SwitchWithGliderProps> = ({
+const SwitchWithGlider = ({
   elements,
   gliderHeight,
   gliderWidth,
   defaultIndex,
   marginBetweenSwitches,
   verticalGlider,
-}) => {
+}: SwitchWithGliderProps) => {
   const classes = useStyles();
   const [gliderPosition, setGliderPosition] = React.useState<any>(0);
 
   React.useEffect(() => {
     if (!verticalGlider) {
-      const incrementalDistance = (typeof gliderWidth === 'number' ? gliderWidth : 0) + marginBetweenSwitches;
+      const incrementalDistance =
+        (typeof gliderWidth === 'number' ? gliderWidth : 0) + marginBetweenSwitches;
       const newPosition = defaultIndex * incrementalDistance;
       setGliderPosition(newPosition);
     } else {
@@ -48,20 +50,14 @@ const SwitchWithGlider: React.FC<SwitchWithGliderProps> = ({
       const newPosition = defaultIndex * incrementalDistance;
       setGliderPosition(newPosition);
     }
-  }, [
-    defaultIndex,
-    gliderHeight,
-    gliderWidth,
-    marginBetweenSwitches,
-    verticalGlider,
-  ]);
+  }, [defaultIndex, gliderHeight, gliderWidth, marginBetweenSwitches, verticalGlider]);
 
   const wrappedElements = elements.map((item: React.FC, index: number) => (
     <Box key={index}>{item}</Box>
   ));
 
   return (
-    <Box width='100%' height='100%'>
+    <Box width="100%" height="100%">
       <Box
         className={classes.glider}
         width={gliderWidth}
@@ -70,12 +66,12 @@ const SwitchWithGlider: React.FC<SwitchWithGliderProps> = ({
           !verticalGlider
             ? {
                 transform: `translateX(${gliderPosition}px)`,
-                opacity: gliderPosition < 0 ? 0 : 1
+                opacity: gliderPosition < 0 ? 0 : 1,
               }
             : {
                 transform: `translateY(${gliderPosition}px)`,
                 borderRadius: '12px',
-                opacity: gliderPosition < 0 ? 0 : 1
+                opacity: gliderPosition < 0 ? 0 : 1,
               }
         }
       />

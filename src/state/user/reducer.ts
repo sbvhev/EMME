@@ -1,10 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import {
-  updateMediaDarkMode,
-  updateUserDarkMode,
-  updateVersion,
-} from './actions';
+import { updateMediaDarkMode, updateUserDarkMode, updateVersion } from './actions';
 
 const currentTimestamp = () => new Date().getTime();
 
@@ -28,10 +24,7 @@ export default createReducer(initialState, (builder) =>
       state.lastUpdateVersionTimestamp = currentTimestamp();
     })
     .addCase(updateUserDarkMode, (state, action) => {
-      localStorage.setItem(
-        DARK_MODE_LOCALSTORAGE_KEY,
-        action.payload.userDarkMode ? '1' : '0',
-      );
+      localStorage.setItem(DARK_MODE_LOCALSTORAGE_KEY, action.payload.userDarkMode ? '1' : '0');
 
       state.userDarkMode = action.payload.userDarkMode;
       state.timestamp = currentTimestamp();
@@ -39,5 +32,5 @@ export default createReducer(initialState, (builder) =>
     .addCase(updateMediaDarkMode, (state, action) => {
       state.mediaDarkMode = action.payload.mediaDarkMode;
       state.timestamp = currentTimestamp();
-    }),
+    })
 );

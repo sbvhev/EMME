@@ -1,1 +1,1 @@
-export * from "./useDeviceWidth";
+export * from './useDeviceWidth';
