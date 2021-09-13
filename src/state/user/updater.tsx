@@ -2,14 +2,16 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { AppDispatch } from 'state';
+import * as storage from 'material/shared/utils/localstorage';
+import { StorageKey } from 'material/shared/model/localstorage.model';
+
 import { updateMediaDarkMode, updateUserDarkMode } from './actions';
-import { DARK_MODE_LOCALSTORAGE_KEY } from './reducer';
 
 export default function Updater(): null {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    const userExistingDarkMode = Number(localStorage.getItem(DARK_MODE_LOCALSTORAGE_KEY));
+    const userExistingDarkMode = Number(storage.get(StorageKey.EMME_DARK_MODE));
 
     dispatch(updateUserDarkMode({ userDarkMode: Boolean(userExistingDarkMode) }));
 

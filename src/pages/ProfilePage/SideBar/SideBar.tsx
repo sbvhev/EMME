@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const SideBar: React.FC<Props> = ({ active }) => {
+const SideBar = ({ active }: Props) => {
   const classes = useStyles();
 
   return (
@@ -114,6 +114,10 @@ const SideBar: React.FC<Props> = ({ active }) => {
       </List>
     </div>
   );
+};
+
+SideBar.defaultProps = {
+  active: undefined,
 };
 
 export default SideBar;

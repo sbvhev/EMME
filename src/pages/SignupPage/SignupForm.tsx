@@ -16,7 +16,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
-import { getErrorFormatter } from 'material/shared/util';
+import { getErrorFormatter } from 'material/shared/utils/util';
 import LoadingButton from 'material/shared/components/LoadingButton';
 import TermsCheckbox from 'material/shared/components/TermsCheckbox';
 import Typography from '@material-ui/core/Typography';

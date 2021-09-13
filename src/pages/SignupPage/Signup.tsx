@@ -22,7 +22,7 @@ const Signup = () => {
 
       setTimeout(() => {
         history.push('/');
-      }, 1000);
+      }, 200);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [errors, isRegister, user]);

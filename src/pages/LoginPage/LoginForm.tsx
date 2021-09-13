@@ -18,7 +18,7 @@ import IconButton from '@material-ui/core/IconButton';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
-import { getErrorFormatter } from 'material/shared/util';
+import { getErrorFormatter } from 'material/shared/utils/util';
 import LoadingButton from 'material/shared/components/LoadingButton';
 
 const useStyles = makeStyles((theme) =>

@@ -2,9 +2,11 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { API_URL } from 'config/index';
+import * as storage from 'material/shared/utils/localstorage';
 
 import { SignupFormData } from 'pages/SignupPage/SignupForm';
 import { LoginFormData } from 'pages/LoginPage/LoginForm';
+import { StorageKey } from 'material/shared/model/localstorage.model';
 
 import type { RootState } from '../store';
 
@@ -98,9 +100,9 @@ const authSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(fetchLoginUser.fulfilled, (state, action) => {
-      localStorage.setItem('emme_token', action.payload.token);
-      localStorage.setItem('emme_email', action.payload.email);
-      localStorage.setItem('emme_id', action.payload.id);
+      storage.set(StorageKey.EMME_TOKEN, action.payload.token);
+      storage.set(StorageKey.EMME_EMAIL, action.payload.email);
+      storage.set(StorageKey.EMME_ID, action.payload.id);
       state.loading = false;
       state.isLogin = true;
       state.user = action.payload;

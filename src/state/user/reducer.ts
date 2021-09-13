@@ -1,10 +1,12 @@
 import { createReducer } from '@reduxjs/toolkit';
 
+import * as storage from 'material/shared/utils/localstorage';
+
+import { StorageKey } from 'material/shared/model/localstorage.model';
 import { updateMediaDarkMode, updateUserDarkMode, updateVersion } from './actions';
 
 const currentTimestamp = () => new Date().getTime();
 
-export const DARK_MODE_LOCALSTORAGE_KEY = 'user/dark_mode';
 export interface UserState {
   lastUpdateVersionTimestamp?: number;
   userDarkMode: boolean | null; // the user's choice for dark mode or light mode
@@ -24,7 +26,7 @@ export default createReducer(initialState, (builder) =>
       state.lastUpdateVersionTimestamp = currentTimestamp();
     })
     .addCase(updateUserDarkMode, (state, action) => {
-      localStorage.setItem(DARK_MODE_LOCALSTORAGE_KEY, action.payload.userDarkMode ? '1' : '0');
+      storage.set(StorageKey.EMME_DARK_MODE, action.payload.userDarkMode ? '1' : '0');
 
       state.userDarkMode = action.payload.userDarkMode;
       state.timestamp = currentTimestamp();

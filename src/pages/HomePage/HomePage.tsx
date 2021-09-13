@@ -1,12 +1,18 @@
-/* eslint-disable react/destructuring-assignment */
 import React from 'react';
-import Navbar from 'material/shared/layout/Navbar';
 
-const HomePage = (props: any) => (
-  <>
-    <Navbar {...props.children} />
-    TEST
-  </>
-);
+import Navbar from 'material/shared/layout/Navbar';
+import RoundTopSnippet from 'material/shared/components/RoundTopSnippet';
+
+const HomePage = (props: any) => {
+  const { children } = props;
+
+  return (
+    <>
+      <Navbar {...children} />
+      <RoundTopSnippet />
+      TEST
+    </>
+  );
+};
 
 export default HomePage;
