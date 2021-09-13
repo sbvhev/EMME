@@ -10,6 +10,10 @@ import ThemeSwitcher, { ThemeType } from 'material/ThemeSwitcher';
 import Alerts from 'material/shared/components/Alerts';
 import Routes from 'routing/Routes';
 
+/*** For now we can simply switch here between themes ***/
+// let selectedTheme: ThemeType = ThemeType.lightTheme;
+let selectedTheme: ThemeType = ThemeType.darkTheme;
+
 const StateUpdaters = () => {
   return <></>;
 };
@@ -20,10 +24,14 @@ interface ThemeProviderProps {
 
 const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const darkModeMediaQuery = useRef(window.matchMedia('(prefers-color-scheme: dark)'));
-  const [themeCfg, changeThemeCfg] = useState<ThemeType>(ThemeType.lightTheme);
+  const [themeCfg, changeThemeCfg] = useState<ThemeType>(selectedTheme);
   // const [themeCfg, changeThemeCfg] = useState<ThemeType>(
   //   darkModeMediaQuery.current?.matches ? ThemeType.darkTheme : ThemeType.lightTheme
   // );
+
+  useEffect(() => {
+    selectedTheme = themeCfg;
+  }, [themeCfg]);
 
   useEffect(() => {
     const setThemeFromMediaQuery = (e: MediaQueryListEvent) => {
@@ -52,7 +60,7 @@ const App = () => {
             <CssBaseline />
             <AlertState>
               <Switch>
-                <Routes />
+                <Routes selectedTheme={selectedTheme} />
               </Switch>
               <Alerts />
             </AlertState>
